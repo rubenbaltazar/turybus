@@ -1,0 +1,38 @@
+﻿** Aspectos destacados
+     Tablas que se volverán a crear con los datos migrados
+       Ninguno
+     Índices clúster que se van a quitar
+       Ninguno
+     Índices clúster que se van a crear
+       Ninguno
+     Posibles incidencias de datos
+       Ninguno
+
+** Acciones del usuario
+     Crear
+       [mantenimiento] (Esquema)
+       [produccion] (Esquema)
+       [ventas] (Esquema)
+       [mantenimiento].[Reparacion] (Tabla)
+       [mantenimiento].[Autobus] (Tabla)
+       [mantenimiento].[Revision] (Tabla)
+       [produccion].[Ruta] (Tabla)
+       [produccion].[Conductor] (Tabla)
+       [produccion].[Lugar] (Tabla)
+       [produccion].[Actividad] (Tabla)
+       [produccion].[Servicio_Diario] (Tabla)
+       [produccion].[Lugar_Interes] (Tabla)
+       [ventas].[Viajero] (Tabla)
+       [ventas].[Billete] (Tabla)
+       Clave externa: restricción sin nombre en [mantenimiento].[Revision] (Clave externa)
+       Clave externa: restricción sin nombre en [mantenimiento].[Revision] (Clave externa)
+       Clave externa: restricción sin nombre en [produccion].[Servicio_Diario] (Clave externa)
+       Clave externa: restricción sin nombre en [produccion].[Servicio_Diario] (Clave externa)
+       Clave externa: restricción sin nombre en [produccion].[Servicio_Diario] (Clave externa)
+       Clave externa: restricción sin nombre en [produccion].[Lugar_Interes] (Clave externa)
+       Clave externa: restricción sin nombre en [produccion].[Lugar_Interes] (Clave externa)
+       Clave externa: restricción sin nombre en [produccion].[Lugar_Interes] (Clave externa)
+       Clave externa: restricción sin nombre en [ventas].[Billete] (Clave externa)
+       Clave externa: restricción sin nombre en [ventas].[Billete] (Clave externa)
+
+** Acciones de compatibilidad

@@ -1,0 +1,6 @@
+D:\proyectosql\turybusuno\bin\Debug\turybusuno.dacpac
+D:\proyectosql\turybusuno\bin\Debug\turybusuno.dll
+D:\proyectosql\turybusuno\bin\Debug\turybusuno.pdb
+D:\proyectosql\turybusuno\obj\Debug\turybusuno.sqlproj.AssemblyReference.cache
+D:\proyectosql\turybusuno\obj\Debug\turybusuno.dll
+D:\proyectosql\turybusuno\obj\Debug\turybusuno.pdb

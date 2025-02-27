@@ -1,0 +1,43 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\proyectosql\\turybusuno\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|D:\\proyectosql\\turybusuno\\Schema\\Tables\\Billete.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
+      "RelativeMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|solutionrelative:Schema\\Tables\\Billete.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|D:\\proyectosql\\turybusuno\\Schema\\Tables\\Billete.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame",
+      "RelativeMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|solutionrelative:Schema\\Tables\\Billete.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Billete.sql ",
+              "DocumentMoniker": "D:\\proyectosql\\turybusuno\\Schema\\Tables\\Billete.sql",
+              "RelativeDocumentMoniker": "Schema\\Tables\\Billete.sql",
+              "ToolTip": "D:\\proyectosql\\turybusuno\\Schema\\Tables\\Billete.sql\r\n(localdb)\\ProjectModels.turybusuno_1\r\n(LAPTOP-RGHC6UT6\\rbaltazar)",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2025-02-27T17:00:02.535Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
