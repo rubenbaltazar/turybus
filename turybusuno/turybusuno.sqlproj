@@ -61,6 +61,7 @@
     <Folder Include="Schema\Programability" />
     <Folder Include="Schema\Security" />
     <Folder Include="Schema\Security\Schema" />
+    <Folder Include="Script" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Schema\Security\Schema\produccion.sql" />
@@ -77,5 +78,18 @@
     <Build Include="Schema\Tables\Reparacion.sql" />
     <Build Include="Schema\Tables\Revision.sql" />
     <Build Include="Schema\Security\Schema\ventas.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Script\produccion.Ruta.data.sql" />
+    <None Include="Script\produccion.Lugar.data.sql" />
+    <None Include="Script\produccion.Actividad.data.sql" />
+    <None Include="Script\mantenimiento.Autobus.data.sql" />
+    <None Include="Script\produccion.Conductor.data.sql" />
+    <None Include="Script\produccion.Servicio_Diario.data.sql" />
+    <None Include="Script\produccion.Lugares_Interes.sql" />
+    <None Include="Script\ventas.Viajero.data.sql" />
+    <None Include="Script\ventas.Billete.data.sql" />
+    <None Include="Script\mantenimiento.Reparacion.data.sql" />
+    <None Include="Script\mantenimiento.Revision.data.sql" />
   </ItemGroup>
 </Project>

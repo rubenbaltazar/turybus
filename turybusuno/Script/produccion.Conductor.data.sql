@@ -1,0 +1,16 @@
+﻿INSERT INTO produccion.Conductor (dni_conductor, nombres_conductor, apellidos_conductor, telefono_conductor, direccion_conductor) VALUES
+('12345678A', 'Carlos', 'Perez Gomez', '754321234', 'Av. La Paz 150, Santa Cruz de la Sierra'),
+('23456789B', 'Ana', 'Martinez Lopez', '744556789', 'Calle 10, zona Norte, Santa Cruz de la Sierra'),
+('34567890C', 'Luis', 'Sanchez Flores', '751234567', 'Calle F, zona Sur, Santa Cruz de la Sierra'),
+('45678901D', 'Marta', 'Rodriguez Sanchez', '759876543', 'Calle 5, zona Oeste, Santa Cruz de la Sierra'),
+('56789012E', 'Juan', 'Gomez Avila', '725678912', 'Av. Cristo Redentor 500, Santa Cruz de la Sierra'),
+('67890123F', 'Beatriz', 'Fernandez Romero', '741234890', 'Calle Los Andes 20, Santa Cruz de la Sierra'),
+('78901234G', 'Jose', 'Jimenez Paredes', '740123456', 'Calle Juana Azurduy 35, Santa Cruz de la Sierra'),
+('89012345H', 'Raquel', 'Lopez Guzman', '746789012', 'Av. El Trompillo, Santa Cruz de la Sierra'),
+('90123456I', 'Pedro', 'Vazquez Morales', '758901234', 'Calle Pampa de la Isla 100, Santa Cruz de la Sierra'),
+('10234567J', 'Gloria', 'Mendez Chavez', '752456789', 'Calle 13, zona Este, Santa Cruz de la Sierra'),
+('11234567K', 'Ricardo', 'Castro Ruiz', '731234567', 'Calle Bella Vista, zona Norte, Santa Cruz de la Sierra'),
+('12345678L', 'Isabel', 'Suarez Fernandez', '747890123', 'Calle San Martin, zona Oeste, Santa Cruz de la Sierra'),
+('13456789M', 'Francisco', 'Paredes Rios', '765432109', 'Av. 3er Anillo, Santa Cruz de la Sierra'),
+('14567890N', 'Laura', 'Gutierrez Rios', '721234987', 'Calle Parques del Norte, Santa Cruz de la Sierra'),
+('15678901O', 'Fernando', 'Gonzalez Lopez', '739876543', 'Calle 15, zona Sur, Santa Cruz de la Sierra');

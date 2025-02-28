@@ -1,0 +1,22 @@
+﻿INSERT INTO mantenimiento.Reparacion (nombre_reparacion)
+VALUES
+('Reemplazo de llantas'),
+('Cambio de aceite y filtros'),
+('Reparacion de frenos'),
+('Mantenimiento de motor'),
+('Reemplazo de bateria'),
+('Ajuste de suspension'),
+('Reparacion de sistema electrico'),
+('Cambio de luces delanteras'),
+('Reemplazo de amortiguadores'),
+('Reparacion de transmision'),
+('Cambio de correa de distribucion'),
+('Ajuste de alineacion de ruedas'),
+('Reparacion de sistema de aire acondicionado'),
+('Reemplazo de radiador'),
+('Reparacion de embrague'),
+('Mantenimiento de direccion hidraulica'),
+('Cambio de bujias'),
+('Reemplazo de pastillas de freno'),
+('Inspeccion y ajuste de frenos ABS'),
+('Reparacion de sistema de escape');

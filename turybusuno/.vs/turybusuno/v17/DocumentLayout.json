@@ -1,14 +1,110 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\proyectosql\\turybusuno\\",
+  "WorkspaceRootPath": "D:\\proyectosgit\\turybusuno\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|D:\\proyectosql\\turybusuno\\Schema\\Tables\\Billete.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
+      "AbsoluteMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|D:\\proyectosgit\\turybusuno\\Script\\ventas.Viajero.data.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
+      "RelativeMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|solutionrelative:Script\\ventas.Viajero.data.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|D:\\proyectosgit\\turybusuno\\Script\\produccion.Lugares_Interes.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
+      "RelativeMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|solutionrelative:Script\\produccion.Lugares_Interes.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|D:\\proyectosgit\\turybusuno\\Script\\produccion.Servicio_Diario.data.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
+      "RelativeMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|solutionrelative:Script\\produccion.Servicio_Diario.data.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|D:\\proyectosgit\\turybusuno\\Script\\produccion.Ruta.data.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
+      "RelativeMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|solutionrelative:Script\\produccion.Ruta.data.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|D:\\proyectosgit\\turybusuno\\Script\\produccion.Conductor.data.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
+      "RelativeMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|solutionrelative:Script\\produccion.Conductor.data.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|D:\\proyectosgit\\turybusuno\\Script\\mantenimiento.Autobus.data.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
+      "RelativeMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|solutionrelative:Script\\mantenimiento.Autobus.data.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|D:\\proyectosgit\\turybusuno\\Script\\produccion.Actividad.data.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
+      "RelativeMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|solutionrelative:Script\\produccion.Actividad.data.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|D:\\proyectosgit\\turybusuno\\Script\\produccion.Lugar.data.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
+      "RelativeMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|solutionrelative:Script\\produccion.Lugar.data.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|D:\\proyectosgit\\turybusuno\\Schema\\Tables\\Billete.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
       "RelativeMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|solutionrelative:Schema\\Tables\\Billete.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|D:\\proyectosql\\turybusuno\\Schema\\Tables\\Billete.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame",
+      "AbsoluteMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|D:\\proyectosgit\\turybusuno\\Schema\\Tables\\Billete.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame",
       "RelativeMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|solutionrelative:Schema\\Tables\\Billete.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|D:\\proyectosgit\\turybusuno\\Script\\produccion.Ruta.data.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame",
+      "RelativeMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|solutionrelative:Script\\produccion.Ruta.data.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|D:\\proyectosgit\\turybusuno\\Script\\produccion.Ruta.data.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|ResultFrame",
+      "RelativeMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|solutionrelative:Script\\produccion.Ruta.data.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|ResultFrame"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|D:\\proyectosgit\\turybusuno\\Script\\produccion.Lugar.data.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame",
+      "RelativeMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|solutionrelative:Script\\produccion.Lugar.data.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|D:\\proyectosgit\\turybusuno\\Script\\produccion.Lugar.data.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|ResultFrame",
+      "RelativeMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|solutionrelative:Script\\produccion.Lugar.data.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|ResultFrame"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|D:\\proyectosgit\\turybusuno\\Script\\produccion.Actividad.data.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame",
+      "RelativeMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|solutionrelative:Script\\produccion.Actividad.data.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|D:\\proyectosgit\\turybusuno\\Script\\produccion.Actividad.data.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|ResultFrame",
+      "RelativeMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|solutionrelative:Script\\produccion.Actividad.data.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|ResultFrame"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|D:\\proyectosgit\\turybusuno\\Script\\mantenimiento.Autobus.data.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame",
+      "RelativeMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|solutionrelative:Script\\mantenimiento.Autobus.data.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|D:\\proyectosgit\\turybusuno\\Script\\mantenimiento.Autobus.data.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|ResultFrame",
+      "RelativeMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|solutionrelative:Script\\mantenimiento.Autobus.data.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|ResultFrame"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|D:\\proyectosgit\\turybusuno\\Script\\produccion.Conductor.data.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame",
+      "RelativeMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|solutionrelative:Script\\produccion.Conductor.data.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|D:\\proyectosgit\\turybusuno\\Script\\produccion.Conductor.data.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|ResultFrame",
+      "RelativeMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|solutionrelative:Script\\produccion.Conductor.data.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|ResultFrame"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|D:\\proyectosgit\\turybusuno\\Script\\produccion.Servicio_Diario.data.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame",
+      "RelativeMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|solutionrelative:Script\\produccion.Servicio_Diario.data.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|D:\\proyectosgit\\turybusuno\\Script\\produccion.Servicio_Diario.data.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|ResultFrame",
+      "RelativeMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|solutionrelative:Script\\produccion.Servicio_Diario.data.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|ResultFrame"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|D:\\proyectosgit\\turybusuno\\Script\\produccion.Lugares_Interes.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame",
+      "RelativeMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|solutionrelative:Script\\produccion.Lugares_Interes.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|D:\\proyectosgit\\turybusuno\\Script\\produccion.Lugares_Interes.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|ResultFrame",
+      "RelativeMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|solutionrelative:Script\\produccion.Lugares_Interes.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|ResultFrame"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|D:\\proyectosgit\\turybusuno\\Script\\ventas.Viajero.data.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame",
+      "RelativeMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|solutionrelative:Script\\ventas.Viajero.data.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|D:\\proyectosgit\\turybusuno\\Script\\ventas.Viajero.data.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|ResultFrame",
+      "RelativeMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|solutionrelative:Script\\ventas.Viajero.data.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|ResultFrame"
     }
   ],
   "DocumentGroupContainers": [
@@ -23,17 +119,113 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Billete.sql ",
-              "DocumentMoniker": "D:\\proyectosql\\turybusuno\\Schema\\Tables\\Billete.sql",
-              "RelativeDocumentMoniker": "Schema\\Tables\\Billete.sql",
-              "ToolTip": "D:\\proyectosql\\turybusuno\\Schema\\Tables\\Billete.sql\r\n(localdb)\\ProjectModels.turybusuno_1\r\n(LAPTOP-RGHC6UT6\\rbaltazar)",
+              "Title": "ventas.Viajero.data.sql ",
+              "DocumentMoniker": "D:\\proyectosgit\\turybusuno\\Script\\ventas.Viajero.data.sql",
+              "RelativeDocumentMoniker": "Script\\ventas.Viajero.data.sql",
+              "ToolTip": "D:\\proyectosgit\\turybusuno\\Script\\ventas.Viajero.data.sql",
+              "RelativeToolTip": "Script\\ventas.Viajero.data.sql",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2025-02-27T17:00:02.535Z",
+              "WhenOpened": "2025-02-28T02:42:26.689Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "produccion.Lugares_Interes.sql ",
+              "DocumentMoniker": "D:\\proyectosgit\\turybusuno\\Script\\produccion.Lugares_Interes.sql",
+              "RelativeDocumentMoniker": "Script\\produccion.Lugares_Interes.sql",
+              "ToolTip": "D:\\proyectosgit\\turybusuno\\Script\\produccion.Lugares_Interes.sql",
+              "RelativeToolTip": "Script\\produccion.Lugares_Interes.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2025-02-28T02:40:38.94Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "produccion.Servicio_Diario.data.sql ",
+              "DocumentMoniker": "D:\\proyectosgit\\turybusuno\\Script\\produccion.Servicio_Diario.data.sql",
+              "RelativeDocumentMoniker": "Script\\produccion.Servicio_Diario.data.sql",
+              "ToolTip": "D:\\proyectosgit\\turybusuno\\Script\\produccion.Servicio_Diario.data.sql",
+              "RelativeToolTip": "Script\\produccion.Servicio_Diario.data.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2025-02-28T02:26:26.573Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "produccion.Conductor.data.sql ",
+              "DocumentMoniker": "D:\\proyectosgit\\turybusuno\\Script\\produccion.Conductor.data.sql",
+              "RelativeDocumentMoniker": "Script\\produccion.Conductor.data.sql",
+              "ToolTip": "D:\\proyectosgit\\turybusuno\\Script\\produccion.Conductor.data.sql",
+              "RelativeToolTip": "Script\\produccion.Conductor.data.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2025-02-28T02:21:36.426Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "mantenimiento.Autobus.data.sql ",
+              "DocumentMoniker": "D:\\proyectosgit\\turybusuno\\Script\\mantenimiento.Autobus.data.sql",
+              "RelativeDocumentMoniker": "Script\\mantenimiento.Autobus.data.sql",
+              "ToolTip": "D:\\proyectosgit\\turybusuno\\Script\\mantenimiento.Autobus.data.sql",
+              "RelativeToolTip": "Script\\mantenimiento.Autobus.data.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2025-02-28T02:19:26.077Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "produccion.Ruta.data.sql ",
+              "DocumentMoniker": "D:\\proyectosgit\\turybusuno\\Script\\produccion.Ruta.data.sql",
+              "RelativeDocumentMoniker": "Script\\produccion.Ruta.data.sql",
+              "ToolTip": "D:\\proyectosgit\\turybusuno\\Script\\produccion.Ruta.data.sql",
+              "RelativeToolTip": "Script\\produccion.Ruta.data.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2025-02-28T02:01:18.036Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "produccion.Actividad.data.sql ",
+              "DocumentMoniker": "D:\\proyectosgit\\turybusuno\\Script\\produccion.Actividad.data.sql",
+              "RelativeDocumentMoniker": "Script\\produccion.Actividad.data.sql",
+              "ToolTip": "D:\\proyectosgit\\turybusuno\\Script\\produccion.Actividad.data.sql",
+              "RelativeToolTip": "Script\\produccion.Actividad.data.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2025-02-28T02:16:41.903Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "produccion.Lugar.data.sql ",
+              "DocumentMoniker": "D:\\proyectosgit\\turybusuno\\Script\\produccion.Lugar.data.sql",
+              "RelativeDocumentMoniker": "Script\\produccion.Lugar.data.sql",
+              "ToolTip": "D:\\proyectosgit\\turybusuno\\Script\\produccion.Lugar.data.sql",
+              "RelativeToolTip": "Script\\produccion.Lugar.data.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2025-02-28T02:11:00.07Z",
               "EditorCaption": ""
             },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Billete.sql ",
+              "DocumentMoniker": "D:\\proyectosgit\\turybusuno\\Schema\\Tables\\Billete.sql",
+              "RelativeDocumentMoniker": "Schema\\Tables\\Billete.sql",
+              "ToolTip": "D:\\proyectosgit\\turybusuno\\Schema\\Tables\\Billete.sql\r\n(localdb)\\ProjectModels.turybusuno_1\r\n(LAPTOP-RGHC6UT6\\rbaltazar)",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2025-02-27T17:00:02.535Z",
+              "EditorCaption": ""
             }
           ]
         }
