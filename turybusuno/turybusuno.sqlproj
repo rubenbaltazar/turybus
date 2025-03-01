@@ -91,5 +91,9 @@
     <None Include="Script\ventas.Billete.data.sql" />
     <None Include="Script\mantenimiento.Reparacion.data.sql" />
     <None Include="Script\mantenimiento.Revision.data.sql" />
+    <None Include="Script\entas.Viajero.data2.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Script\Script.PostDeployment1.sql" />
   </ItemGroup>
 </Project>
