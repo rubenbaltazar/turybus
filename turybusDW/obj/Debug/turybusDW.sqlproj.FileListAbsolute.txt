@@ -1,0 +1,6 @@
+D:\proyectosgit\turybusDW\bin\Debug\turybusDW.dacpac
+D:\proyectosgit\turybusDW\bin\Debug\turybusDW.dll
+D:\proyectosgit\turybusDW\bin\Debug\turybusDW.pdb
+D:\proyectosgit\turybusDW\obj\Debug\turybusDW.sqlproj.AssemblyReference.cache
+D:\proyectosgit\turybusDW\obj\Debug\turybusDW.dll
+D:\proyectosgit\turybusDW\obj\Debug\turybusDW.pdb

@@ -47,28 +47,8 @@
       "RelativeMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|solutionrelative:Schema\\Tables\\Billete.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|D:\\proyectosgit\\turybusuno\\Script\\ventas.Viajero.data.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame",
-      "RelativeMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|solutionrelative:Script\\ventas.Viajero.data.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|D:\\proyectosgit\\turybusuno\\Script\\mantenimiento.Autobus.data.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame",
-      "RelativeMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|solutionrelative:Script\\mantenimiento.Autobus.data.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|D:\\proyectosgit\\turybusuno\\Script\\produccion.Actividad.data.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame",
-      "RelativeMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|solutionrelative:Script\\produccion.Actividad.data.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|D:\\proyectosgit\\turybusuno\\Script\\Script.PostDeployment1.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame",
-      "RelativeMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|solutionrelative:Script\\Script.PostDeployment1.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|D:\\proyectosgit\\turybusuno\\Script\\entas.Viajero.data2.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame",
       "RelativeMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|solutionrelative:Script\\entas.Viajero.data2.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|D:\\proyectosgit\\turybusuno\\Script\\entas.Viajero.data2.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|ResultFrame",
-      "RelativeMoniker": "D:0:0:{1015E9F0-0030-458F-8B41-78E73747768A}|turybusuno.sqlproj|solutionrelative:Script\\entas.Viajero.data2.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|ResultFrame"
     }
   ],
   "DocumentGroupContainers": [
@@ -78,8 +58,12 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -95,7 +79,7 @@
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "Script.PostDeployment1.sql ",
+              "Title": "Script.PostDeployment1.sql",
               "DocumentMoniker": "D:\\proyectosgit\\turybusuno\\Script\\Script.PostDeployment1.sql",
               "RelativeDocumentMoniker": "Script\\Script.PostDeployment1.sql",
               "ToolTip": "D:\\proyectosgit\\turybusuno\\Script\\Script.PostDeployment1.sql",
@@ -107,7 +91,7 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "ventas.Viajero.data.sql ",
+              "Title": "ventas.Viajero.data.sql",
               "DocumentMoniker": "D:\\proyectosgit\\turybusuno\\Script\\ventas.Viajero.data.sql",
               "RelativeDocumentMoniker": "Script\\ventas.Viajero.data.sql",
               "ToolTip": "D:\\proyectosgit\\turybusuno\\Script\\ventas.Viajero.data.sql",
@@ -131,7 +115,7 @@
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "mantenimiento.Autobus.data.sql ",
+              "Title": "mantenimiento.Autobus.data.sql",
               "DocumentMoniker": "D:\\proyectosgit\\turybusuno\\Script\\mantenimiento.Autobus.data.sql",
               "RelativeDocumentMoniker": "Script\\mantenimiento.Autobus.data.sql",
               "ToolTip": "D:\\proyectosgit\\turybusuno\\Script\\mantenimiento.Autobus.data.sql",
@@ -143,7 +127,7 @@
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "produccion.Actividad.data.sql ",
+              "Title": "produccion.Actividad.data.sql",
               "DocumentMoniker": "D:\\proyectosgit\\turybusuno\\Script\\produccion.Actividad.data.sql",
               "RelativeDocumentMoniker": "Script\\produccion.Actividad.data.sql",
               "ToolTip": "D:\\proyectosgit\\turybusuno\\Script\\produccion.Actividad.data.sql",
@@ -199,10 +183,6 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
               "WhenOpened": "2025-02-28T02:11:00.07Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
             },
             {
               "$type": "Document",

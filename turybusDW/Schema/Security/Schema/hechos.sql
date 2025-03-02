@@ -1,0 +1,2 @@
+﻿CREATE SCHEMA [hechos]
+go
