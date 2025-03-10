@@ -82,5 +82,6 @@
     <Build Include="Schema\Tables\Ruta.sql" />
     <Build Include="Schema\Programability\GetLastPackageRowVersion.sql" />
     <Build Include="Schema\Programability\UpdateLastPackageRowVersion.sql" />
+    <Build Include="Schema\Programability\Todos.sql" />
   </ItemGroup>
 </Project>
