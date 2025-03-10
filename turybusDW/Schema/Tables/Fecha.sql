@@ -1,6 +1,6 @@
 ﻿-- Dimensión Fecha
 CREATE TABLE staging.Fecha (
-    sk_fecha INT PRIMARY KEY,
+    sk_fecha int NOT NULL,
     fecha DATE,
     dia INT,
     mes INT,

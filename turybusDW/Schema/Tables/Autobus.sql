@@ -1,5 +1,5 @@
 ﻿CREATE TABLE staging.Autobus (
-    sk_autobus INT PRIMARY KEY,
+    sk_autobus  int NOT NULL,
     matricula VARCHAR(20),
     modelo VARCHAR(255),
     fabricante VARCHAR(255),

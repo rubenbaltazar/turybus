@@ -1,0 +1,28 @@
+﻿** Aspectos destacados
+     Tablas que se volverán a crear con los datos migrados
+       [staging].[Actividad]
+       [staging].[Autobus]
+       [staging].[Conductor]
+       [staging].[Lugar]
+       [staging].[Ruta]
+     Índices clúster que se van a quitar
+       restricción sin nombre en [staging].[Fecha]
+     Índices clúster que se van a crear
+       Ninguno
+     Posibles incidencias de datos
+       Ninguno
+
+** Acciones del usuario
+     Quitar
+       restricción sin nombre en [staging].[Fecha] (Clave principal)
+     Volver a crear la tabla
+       [staging].[Actividad] (Tabla)
+       [staging].[Autobus] (Tabla)
+       [staging].[Conductor] (Tabla)
+       [staging].[Lugar] (Tabla)
+       [staging].[Ruta] (Tabla)
+
+** Acciones de compatibilidad
+
+Si se ejecuta esta implementación, los cambios realizados en [staging].[Autobus] podrían generar errores en tiempo de ejecución en [dbo].[MergeDim_Autobus].
+

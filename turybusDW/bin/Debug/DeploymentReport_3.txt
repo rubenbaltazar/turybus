@@ -1,0 +1,53 @@
+﻿** Aspectos destacados
+     Tablas que se volverán a crear con los datos migrados
+       [dim].[Dim_Actividad]
+       [dim].[Dim_Autobus]
+       [dim].[Dim_Conductor]
+       [dim].[Dim_Fecha]
+       [dim].[Dim_Lugar]
+       [dim].[Dim_Ruta]
+       [staging].[Actividad]
+       [staging].[Autobus]
+       [staging].[Conductor]
+       [staging].[Lugar]
+       [staging].[Ruta]
+     Índices clúster que se van a quitar
+       Ninguno
+     Índices clúster que se van a crear
+       Ninguno
+     Posibles incidencias de datos
+       Ninguno
+
+** Acciones del usuario
+     Quitar
+       restricción sin nombre en [hechos].[Hechos_Viajes] (Clave externa)
+       restricción sin nombre en [hechos].[Hechos_Viajes] (Clave externa)
+       restricción sin nombre en [hechos].[Hechos_Viajes] (Clave externa)
+       restricción sin nombre en [hechos].[Hechos_Viajes] (Clave externa)
+       restricción sin nombre en [hechos].[Hechos_Viajes] (Clave externa)
+       restricción sin nombre en [hechos].[Hechos_Viajes] (Clave externa)
+     Volver a crear la tabla
+       [dim].[Dim_Actividad] (Tabla)
+       [dim].[Dim_Autobus] (Tabla)
+       [dim].[Dim_Conductor] (Tabla)
+       [dim].[Dim_Fecha] (Tabla)
+       [dim].[Dim_Lugar] (Tabla)
+       [dim].[Dim_Ruta] (Tabla)
+       [staging].[Actividad] (Tabla)
+       [staging].[Autobus] (Tabla)
+       [staging].[Conductor] (Tabla)
+       [staging].[Lugar] (Tabla)
+       [staging].[Ruta] (Tabla)
+
+** Acciones de compatibilidad
+     Crear
+       Clave externa: restricción sin nombre en [hechos].[Hechos_Viajes] (Clave externa)
+       Clave externa: restricción sin nombre en [hechos].[Hechos_Viajes] (Clave externa)
+       Clave externa: restricción sin nombre en [hechos].[Hechos_Viajes] (Clave externa)
+       Clave externa: restricción sin nombre en [hechos].[Hechos_Viajes] (Clave externa)
+       Clave externa: restricción sin nombre en [hechos].[Hechos_Viajes] (Clave externa)
+       Clave externa: restricción sin nombre en [hechos].[Hechos_Viajes] (Clave externa)
+
+Si se ejecuta esta implementación, los cambios realizados en [dim].[Dim_Autobus] podrían generar errores en tiempo de ejecución en [dbo].[MergeDim_Autobus].
+Si se ejecuta esta implementación, los cambios realizados en [staging].[Autobus] podrían generar errores en tiempo de ejecución en [dbo].[MergeDim_Autobus].
+

@@ -1,5 +1,5 @@
 ﻿CREATE TABLE dim.Dim_Autobus (
-    sk_autobus INT PRIMARY KEY,
+    sk_autobus INT IDENTITY(1,1) PRIMARY KEY,
     id_autobus INT,
     matricula VARCHAR(20),
     modelo VARCHAR(255),
