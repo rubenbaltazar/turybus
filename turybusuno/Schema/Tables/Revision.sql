@@ -5,6 +5,7 @@
     fecha_revision DATE NOT NULL,
     tiempo_revision INT NOT NULL,
     diagnostico TEXT,
+    rowversion timestamp NOT NULL,
     FOREIGN KEY (id_autobus) REFERENCES mantenimiento.Autobus(id_autobus),
     FOREIGN KEY (id_reparacion) REFERENCES mantenimiento.Reparacion(id_reparacion)
 );

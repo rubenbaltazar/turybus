@@ -1,0 +1,38 @@
+﻿** Aspectos destacados
+     Tablas que se volverán a crear con los datos migrados
+       Ninguno
+     Índices clúster que se van a quitar
+       Ninguno
+     Índices clúster que se van a crear
+       Ninguno
+     Posibles incidencias de datos
+       Ninguno
+
+** Acciones del usuario
+     Crear
+       [dim] (Esquema)
+       [hechos] (Esquema)
+       [staging] (Esquema)
+       [dim].[Dim_Actividad] (Tabla)
+       [dim].[Dim_Autobus] (Tabla)
+       [dim].[Dim_Conductor] (Tabla)
+       [dim].[Dim_Fecha] (Tabla)
+       [dim].[Dim_Lugar] (Tabla)
+       [dim].[Dim_Ruta] (Tabla)
+       [hechos].[Hechos_Viajes] (Tabla)
+       [staging].[Actividad] (Tabla)
+       [staging].[Autobus] (Tabla)
+       [staging].[Conductor] (Tabla)
+       [staging].[Fecha] (Tabla)
+       [staging].[Lugar] (Tabla)
+       [staging].[Ruta] (Tabla)
+       [dbo].[PackageConfig] (Tabla)
+       Clave externa: restricción sin nombre en [hechos].[Hechos_Viajes] (Clave externa)
+       Clave externa: restricción sin nombre en [hechos].[Hechos_Viajes] (Clave externa)
+       Clave externa: restricción sin nombre en [hechos].[Hechos_Viajes] (Clave externa)
+       Clave externa: restricción sin nombre en [hechos].[Hechos_Viajes] (Clave externa)
+       Clave externa: restricción sin nombre en [hechos].[Hechos_Viajes] (Clave externa)
+       Clave externa: restricción sin nombre en [hechos].[Hechos_Viajes] (Clave externa)
+       [dbo].[GetLastPackageRowVersion] (Procedimiento)
+
+** Acciones de compatibilidad

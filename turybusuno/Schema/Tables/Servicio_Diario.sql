@@ -7,6 +7,7 @@
     descripcion_servicio TEXT,
     id_conductor INT NOT NULL,
     id_autobus INT NOT NULL,
+    rowversion timestamp NOT NULL,
     FOREIGN KEY (id_ruta) REFERENCES produccion.Ruta(id_ruta),
     FOREIGN KEY (id_conductor) REFERENCES produccion.Conductor(id_conductor),
     FOREIGN KEY (id_autobus) REFERENCES mantenimiento.Autobus(id_autobus)

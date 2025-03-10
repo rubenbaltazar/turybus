@@ -4,5 +4,6 @@
     nombres_viajero VARCHAR(50) NOT NULL,
     apellidos_viajero VARCHAR(50) NOT NULL,
     telefono_viajero VARCHAR(20),
-    direccion_viajero VARCHAR(100)
+    direccion_viajero VARCHAR(100),
+    rowversion timestamp NOT NULL
 );

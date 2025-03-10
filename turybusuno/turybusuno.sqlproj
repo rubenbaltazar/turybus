@@ -94,6 +94,6 @@
     <None Include="Script\entas.Viajero.data2.sql" />
   </ItemGroup>
   <ItemGroup>
-    <PostDeploy Include="Script\Script.PostDeployment1.sql" />
+    <None Include="Script\procedure.sql" />
   </ItemGroup>
 </Project>

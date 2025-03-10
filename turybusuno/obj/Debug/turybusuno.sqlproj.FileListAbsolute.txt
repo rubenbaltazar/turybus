@@ -10,7 +10,3 @@ D:\proyectosgit\turybusuno\obj\Debug\turybusuno.dll
 D:\proyectosgit\turybusuno\obj\Debug\turybusuno.pdb
 D:\proyectosgit\turybusuno\bin\Debug\turybusuno.dll
 D:\proyectosgit\turybusuno\bin\Debug\turybusuno.pdb
-D:\proyectosgit\turybusuno\obj\Debug\Model.xml
-D:\proyectosgit\turybusuno\obj\Debug\refactor.xml
-D:\proyectosgit\turybusuno\obj\Debug\postdeploy.sql
-D:\proyectosgit\turybusuno\obj\Debug\predeploy.sql

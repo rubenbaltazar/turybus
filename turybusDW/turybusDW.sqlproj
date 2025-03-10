@@ -72,5 +72,15 @@
     <Build Include="Schema\Tables\Dim_Lugar.sql" />
     <Build Include="Schema\Tables\Dim_Actividad.sql" />
     <Build Include="Schema\Tables\Hechos_Viajes.sql" />
+    <Build Include="Schema\Tables\PackageConfig.sql" />
+    <Build Include="Schema\Security\Schema\staging.sql" />
+    <Build Include="Schema\Tables\Actividad.sql" />
+    <Build Include="Schema\Tables\Autobus.sql" />
+    <Build Include="Schema\Tables\Conductor.sql" />
+    <Build Include="Schema\Tables\Fecha.sql" />
+    <Build Include="Schema\Tables\Lugar.sql" />
+    <Build Include="Schema\Tables\Ruta.sql" />
+    <Build Include="Schema\Programability\GetLastPackageRowVersion.sql" />
+    <Build Include="Schema\Programability\UpdateLastPackageRowVersion.sql" />
   </ItemGroup>
 </Project>

@@ -4,5 +4,6 @@
     modelo VARCHAR(255) NOT NULL,
     fabricante VARCHAR(255) NOT NULL,
     numero_plazas INT NOT NULL,
-    caracteristicas TEXT
+    caracteristicas TEXT,
+    rowversion timestamp NOT NULL
 );

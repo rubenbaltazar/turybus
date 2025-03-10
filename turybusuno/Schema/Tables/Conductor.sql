@@ -4,5 +4,6 @@
     nombres_conductor VARCHAR(50) NOT NULL,
     apellidos_conductor VARCHAR(50) NOT NULL,
     telefono_conductor VARCHAR(20),
-    direccion_conductor TEXT
+    direccion_conductor TEXT,
+    rowversion timestamp NOT NULL
 );

@@ -6,6 +6,7 @@
     hora_prevista TIME NOT NULL,
     tiempo_parada INT,
     distancia_lugar DECIMAL(10,2) NOT NULL,
+    rowversion timestamp NOT NULL,
     FOREIGN KEY (id_servicio) REFERENCES produccion.Servicio_Diario(id_servicio),
     FOREIGN KEY (id_lugar) REFERENCES produccion.Lugar(id_lugar),
     FOREIGN KEY (id_actividad) REFERENCES produccion.Actividad(id_actividad)

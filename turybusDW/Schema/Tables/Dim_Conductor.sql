@@ -1,7 +1,7 @@
 ﻿-- Dimensión Conductor
 CREATE TABLE dim.Dim_Conductor (
-    id_conductor INT PRIMARY KEY,
-    id_conductor_ak INT,
+    sk_conductor INT PRIMARY KEY,
+    id_conductor INT,
     dni_conductor VARCHAR(20),
     nombres_conductor VARCHAR(50),
     apellidos_conductor VARCHAR(50),

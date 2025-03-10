@@ -1,7 +1,7 @@
 ﻿-- Dimensión Fecha
 CREATE TABLE dim.Dim_Fecha (
-    id_fecha INT PRIMARY KEY,
-    id_fecha_ak INT,
+    sk_fecha INT PRIMARY KEY,
+    id_fecha INT,
     fecha DATE,
     dia INT,
     mes INT,
