@@ -1,18 +1,18 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="3/9/2025 10:07:27 PM"
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="LAPTOP-RGHC6UT6"
   DTS:CreatorName="LAPTOP-RGHC6UT6\rbaltazar"
-  DTS:DTSID="{63948124-473D-4E78-BBF6-651D202C976F}"
+  DTS:DTSID="{AF2DEAF1-D771-45CA-98A0-E4E8337E10FC}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="16.0.5685.0"
   DTS:LocaleID="2058"
-  DTS:ObjectName="Package"
+  DTS:ObjectName="Autobus"
   DTS:PackageType="5"
-  DTS:VersionBuild="24"
-  DTS:VersionGUID="{84879591-C286-434D-88AC-ED5DBCB65C11}">
+  DTS:VersionBuild="25"
+  DTS:VersionGUID="{DCFBA3CD-A442-4428-9F9B-4A85EB4218E0}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -982,13 +982,29 @@ where [refTable].[id_autobus] = ?</property>
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="259.2,44.8"
-          Id="Package\GetDatabaseRowVersion"
-          TopLeft="82.857143033524,49.705882309372" />
+          Size="136.8,41.6"
+          Id="Package\cargar datos"
+          TopLeft="140.71428601383,305.117646791376" />
         <NodeLayout
           Size="214.4,41.6"
           Id="Package\Get LastRowVersion AutoBus"
           TopLeft="93.5714287706175,141.47058811129" />
+        <NodeLayout
+          Size="259.2,44.8"
+          Id="Package\GetDatabaseRowVersion"
+          TopLeft="82.857143033524,49.705882309372" />
+        <NodeLayout
+          Size="192,41.6"
+          Id="Package\Limpiar staging AutoBus"
+          TopLeft="105.000000223517,221.764705687968" />
+        <NodeLayout
+          Size="169.6,41.6"
+          Id="Package\syn staging"
+          TopLeft="384.285715103758,259.247058657296" />
+        <NodeLayout
+          Size="142.4,41.6"
+          Id="Package\update config"
+          TopLeft="382.142857956339,364.011764447819" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restricción]"
           TopLeft="212.457143033524,94.505882309372">
@@ -1023,10 +1039,6 @@ where [refTable].[id_autobus] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="192,41.6"
-          Id="Package\Limpiar staging AutoBus"
-          TopLeft="105.000000223517,221.764705687968" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restricción 1]"
           TopLeft="200.771428770617,183.07058811129">
@@ -1061,10 +1073,6 @@ where [refTable].[id_autobus] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="136.8,41.6"
-          Id="Package\cargar datos"
-          TopLeft="140.71428601383,305.117646791376" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restricción 2]"
           TopLeft="201.000000223517,263.364705687968">
@@ -1099,10 +1107,6 @@ where [refTable].[id_autobus] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="169.6,41.6"
-          Id="Package\syn staging"
-          TopLeft="384.285715103758,259.247058657296" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restricción 3]"
           TopLeft="277.51428601383,325.917646791376">
@@ -1137,10 +1141,6 @@ where [refTable].[id_autobus] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="142.4,41.6"
-          Id="Package\update config"
-          TopLeft="382.142857956339,364.011764447819" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restricción 4]"
           TopLeft="469.085715103758,300.847058657296">
@@ -1291,6 +1291,19 @@ where [refTable].[id_autobus] = ?</property>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
+    design-time-name="Package\cargar datos\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
     design-time-name="Package\cargar datos\OLE DB Source">
     <Properties>
       <Property>
@@ -1304,7 +1317,7 @@ where [refTable].[id_autobus] = ?</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -1314,23 +1327,10 @@ where [refTable].[id_autobus] = ?</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\cargar datos\OLE DB Destination">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
