@@ -2,13 +2,53 @@
 <BuildLog xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <ProjectInfo>
     <Name>turybusETL</Name>
-    <LastWriteTime>2025-03-10T03:43:12.7309098Z</LastWriteTime>
+    <LastWriteTime>2025-03-19T03:14:15.634909Z</LastWriteTime>
     <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
   </ProjectInfo>
   <LastBuildInfos>
     <ProjectBuildItemInfo>
       <Name>Autobus.dtsx</Name>
-      <LastWriteTime>2025-03-10T03:43:11.1508217Z</LastWriteTime>
+      <LastWriteTime>2025-03-18T17:50:23.7725421Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>Conductor.dtsx</Name>
+      <LastWriteTime>2025-03-18T17:30:20.1021363Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>Lugar.dtsx</Name>
+      <LastWriteTime>2025-03-18T17:30:30.5387026Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>Viaje.dtsx</Name>
+      <LastWriteTime>2025-03-18T17:30:41.6845756Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>Actividad.dtsx</Name>
+      <LastWriteTime>2025-03-18T17:49:25.072406Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>Ruta.dtsx</Name>
+      <LastWriteTime>2025-03-18T21:42:02.358819Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>Viajero.dtsx</Name>
+      <LastWriteTime>2025-03-19T03:14:15.605904Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>Fecha.dtsx</Name>
+      <LastWriteTime>2025-03-18T22:38:40.6495072Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>Ventas.dtsx</Name>
+      <LastWriteTime>2025-03-19T03:14:15.5941888Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
   </LastBuildInfos>

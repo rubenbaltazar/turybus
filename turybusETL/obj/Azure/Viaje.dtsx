@@ -1,0 +1,2652 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="3/9/2025 10:07:27 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="LAPTOP-RGHC6UT6"
+  DTS:CreatorName="LAPTOP-RGHC6UT6\rbaltazar"
+  DTS:DTSID="{CAD20602-761B-4E3E-8DAB-DA09A0584321}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.0"
+  DTS:LocaleID="2058"
+  DTS:ObjectName="Viaje"
+  DTS:PackageType="5"
+  DTS:VersionBuild="51"
+  DTS:VersionGUID="{6E9D27E6-426A-4005-A2C7-6F39F358F077}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[destino.turybusdw]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{07FC6E6A-1941-49F6-BFB8-590189804ECF}"
+      DTS:ObjectName="destino.turybusdw">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=turybusdw;Provider=MSOLEDBSQL;Integrated Security=SSPI;Application Name=SSIS-Package-{07FC6E6A-1941-49F6-BFB8-590189804ECF}localhost.turybusdw;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[origen.turybus]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{A79AC5C9-644B-46E6-98FD-D2DA7DEBB2DE}"
+      DTS:ObjectName="origen.turybus">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=turybus;Provider=MSOLEDBSQL;Integrated Security=SSPI;Application Name=SSIS-Package-{A79AC5C9-644B-46E6-98FD-D2DA7DEBB2DE}localhost.turybus;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{81471657-3276-4743-A33D-455B81E5107F}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="dbts">
+      <DTS:VariableValue
+        DTS:DataType="20">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{BB22837E-16AC-44D2-95AA-8B8AF1E07C33}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="LastRowVersion">
+      <DTS:VariableValue
+        DTS:DataType="20">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\cargar datos"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{E261F74D-C3F4-4BB0-8EC5-2A1F4328E2A9}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="cargar datos"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\cargar datos\Lookup"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [hechos].[Hechos_Viajes]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from [hechos].[Hechos_Viajes]) [refTable]
+where [refTable].[sk_viajes] = ? and [refTable].[id_viaje] = ? and [refTable].[sk_fecha] = ? and [refTable].[sk_autobus] = ? and [refTable].[sk_conductor] = ? and [refTable].[sk_lugar] = ? and [refTable].[sk_ruta] = ? and [refTable].[sk_actividad] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="sk_viajes" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="id_viaje" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sk_ruta" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sk_fecha" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sk_autobus" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sk_conductor" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sk_lugar" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sk_actividad" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="cantidad_viajeros" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ingresos_totales" dataType="DT_NUMERIC" length="0" precision="10" scale="2" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[id_servicio]};#{Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[id_viajero]};#{Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[BilleteDateKey]};#{Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[id_autobus]};#{Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[id_conductor]};#{Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[id_lugar]};#{Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[id_ruta]};#{Package\cargar datos\Lookup Actividad.Outputs[Lookup Match Output].Columns[sk_actividad]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\cargar datos\Lookup.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[destino.turybusdw]"
+                  connectionManagerRefId="Package.ConnectionManagers[destino.turybusdw]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\cargar datos\Lookup.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\cargar datos\Lookup.Inputs[Lookup Input].Columns[id_servicio]"
+                      cachedDataType="i4"
+                      cachedName="id_servicio"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[id_servicio]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">sk_viajes</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\cargar datos\Lookup.Inputs[Lookup Input].Columns[id_viajero]"
+                      cachedDataType="i4"
+                      cachedName="id_viajero"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[id_viajero]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">id_viaje</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\cargar datos\Lookup.Inputs[Lookup Input].Columns[BilleteDateKey]"
+                      cachedDataType="i4"
+                      cachedName="BilleteDateKey"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[BilleteDateKey]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">sk_fecha</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\cargar datos\Lookup.Inputs[Lookup Input].Columns[id_autobus]"
+                      cachedDataType="i4"
+                      cachedName="id_autobus"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[id_autobus]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">sk_autobus</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\cargar datos\Lookup.Inputs[Lookup Input].Columns[id_conductor]"
+                      cachedDataType="i4"
+                      cachedName="id_conductor"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[id_conductor]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">sk_conductor</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\cargar datos\Lookup.Inputs[Lookup Input].Columns[id_lugar]"
+                      cachedDataType="i4"
+                      cachedName="id_lugar"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[id_lugar]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">sk_lugar</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\cargar datos\Lookup.Inputs[Lookup Input].Columns[id_ruta]"
+                      cachedDataType="i4"
+                      cachedName="id_ruta"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[id_ruta]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">sk_ruta</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\cargar datos\Lookup.Inputs[Lookup Input].Columns[sk_actividad]"
+                      cachedDataType="i4"
+                      cachedName="sk_actividad"
+                      lineageId="Package\cargar datos\Lookup Actividad.Outputs[Lookup Match Output].Columns[sk_actividad]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">sk_actividad</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\cargar datos\Lookup.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\cargar datos\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\cargar datos\Lookup.Outputs[Lookup Match Output].Columns[sk_viajes]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\cargar datos\Lookup.Outputs[Lookup Match Output].Columns[sk_viajes]"
+                      name="sk_viajes"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">sk_viajes</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\cargar datos\Lookup.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\cargar datos\Lookup.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\cargar datos\Lookup.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\cargar datos\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\cargar datos\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\cargar datos\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\cargar datos\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\cargar datos\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\cargar datos\Lookup Actividad"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup Actividad"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [hechos].[Hechos_Viajes]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from [hechos].[Hechos_Viajes]) [refTable]
+where [refTable].[sk_actividad] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="sk_viajes" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="id_viaje" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sk_ruta" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sk_fecha" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sk_autobus" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sk_conductor" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sk_lugar" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sk_actividad" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="cantidad_viajeros" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ingresos_totales" dataType="DT_NUMERIC" length="0" precision="10" scale="2" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[id_actividad]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\cargar datos\Lookup Actividad.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[destino.turybusdw]"
+                  connectionManagerRefId="Package.ConnectionManagers[destino.turybusdw]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\cargar datos\Lookup Actividad.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\cargar datos\Lookup Actividad.Inputs[Lookup Input].Columns[id_actividad]"
+                      cachedDataType="i4"
+                      cachedName="id_actividad"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[id_actividad]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">sk_actividad</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\cargar datos\Lookup Actividad.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\cargar datos\Lookup Actividad.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\cargar datos\Lookup Actividad.Outputs[Lookup Match Output].Columns[sk_actividad]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\cargar datos\Lookup Actividad.Outputs[Lookup Match Output].Columns[sk_actividad]"
+                      name="sk_actividad"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">sk_actividad</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\cargar datos\Lookup Actividad.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\cargar datos\Lookup Actividad.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\cargar datos\Lookup Actividad.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\cargar datos\Lookup Actividad.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\cargar datos\Lookup Actividad.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\cargar datos\Lookup Actividad.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\cargar datos\Lookup Actividad.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\cargar datos\Lookup Actividad.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\cargar datos\Lookup Autobus"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup Autobus"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [hechos].[Hechos_Viajes]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from [hechos].[Hechos_Viajes]) [refTable]
+where [refTable].[sk_autobus] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="sk_viajes" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="id_viaje" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sk_ruta" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sk_fecha" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sk_autobus" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sk_conductor" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sk_lugar" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sk_actividad" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="cantidad_viajeros" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ingresos_totales" dataType="DT_NUMERIC" length="0" precision="10" scale="2" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[id_autobus]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\cargar datos\Lookup Autobus.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[destino.turybusdw]"
+                  connectionManagerRefId="Package.ConnectionManagers[destino.turybusdw]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\cargar datos\Lookup Autobus.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\cargar datos\Lookup Autobus.Inputs[Lookup Input].Columns[id_autobus]"
+                      cachedDataType="i4"
+                      cachedName="id_autobus"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[id_autobus]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">sk_autobus</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\cargar datos\Lookup Autobus.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\cargar datos\Lookup Autobus.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\cargar datos\Lookup Autobus.Outputs[Lookup Match Output].Columns[sk_autobus]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\cargar datos\Lookup Autobus.Outputs[Lookup Match Output].Columns[sk_autobus]"
+                      name="sk_autobus"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">sk_autobus</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\cargar datos\Lookup Autobus.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\cargar datos\Lookup Autobus.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\cargar datos\Lookup Autobus.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\cargar datos\Lookup Autobus.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\cargar datos\Lookup Autobus.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\cargar datos\Lookup Autobus.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\cargar datos\Lookup Autobus.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\cargar datos\Lookup Autobus.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\cargar datos\Lookup Conductor"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup Conductor"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [hechos].[Hechos_Viajes]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from [hechos].[Hechos_Viajes]) [refTable]
+where [refTable].[sk_autobus] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="sk_viajes" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="id_viaje" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sk_ruta" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sk_fecha" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sk_autobus" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sk_conductor" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sk_lugar" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sk_actividad" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="cantidad_viajeros" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ingresos_totales" dataType="DT_NUMERIC" length="0" precision="10" scale="2" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[id_autobus]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\cargar datos\Lookup Conductor.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[destino.turybusdw]"
+                  connectionManagerRefId="Package.ConnectionManagers[destino.turybusdw]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\cargar datos\Lookup Conductor.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\cargar datos\Lookup Conductor.Inputs[Lookup Input].Columns[id_autobus]"
+                      cachedDataType="i4"
+                      cachedName="id_autobus"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[id_autobus]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">sk_autobus</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\cargar datos\Lookup Conductor.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\cargar datos\Lookup Conductor.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\cargar datos\Lookup Conductor.Outputs[Lookup Match Output].Columns[sk_autobus]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\cargar datos\Lookup Conductor.Outputs[Lookup Match Output].Columns[sk_autobus]"
+                      name="sk_autobus"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">sk_autobus</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\cargar datos\Lookup Conductor.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\cargar datos\Lookup Conductor.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\cargar datos\Lookup Conductor.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\cargar datos\Lookup Conductor.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\cargar datos\Lookup Conductor.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\cargar datos\Lookup Conductor.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\cargar datos\Lookup Conductor.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\cargar datos\Lookup Conductor.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\cargar datos\Lookup Lugar"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup Lugar"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [hechos].[Hechos_Viajes]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from [hechos].[Hechos_Viajes]) [refTable]
+where [refTable].[sk_lugar] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="sk_viajes" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="id_viaje" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sk_ruta" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sk_fecha" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sk_autobus" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sk_conductor" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sk_lugar" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sk_actividad" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="cantidad_viajeros" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ingresos_totales" dataType="DT_NUMERIC" length="0" precision="10" scale="2" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[id_lugar]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\cargar datos\Lookup Lugar.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[destino.turybusdw]"
+                  connectionManagerRefId="Package.ConnectionManagers[destino.turybusdw]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\cargar datos\Lookup Lugar.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\cargar datos\Lookup Lugar.Inputs[Lookup Input].Columns[id_lugar]"
+                      cachedDataType="i4"
+                      cachedName="id_lugar"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[id_lugar]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">sk_lugar</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\cargar datos\Lookup Lugar.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\cargar datos\Lookup Lugar.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\cargar datos\Lookup Lugar.Outputs[Lookup Match Output].Columns[sk_lugar]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\cargar datos\Lookup Lugar.Outputs[Lookup Match Output].Columns[sk_lugar]"
+                      name="sk_lugar"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">sk_lugar</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\cargar datos\Lookup Lugar.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\cargar datos\Lookup Lugar.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\cargar datos\Lookup Lugar.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\cargar datos\Lookup Lugar.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\cargar datos\Lookup Lugar.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\cargar datos\Lookup Lugar.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\cargar datos\Lookup Lugar.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\cargar datos\Lookup Lugar.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\cargar datos\Lookup Ruta"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup Ruta"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [hechos].[Hechos_Viajes]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from [hechos].[Hechos_Viajes]) [refTable]
+where [refTable].[sk_ruta] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="sk_viajes" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="id_viaje" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sk_ruta" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sk_fecha" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sk_autobus" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sk_conductor" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sk_lugar" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sk_actividad" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="cantidad_viajeros" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ingresos_totales" dataType="DT_NUMERIC" length="0" precision="10" scale="2" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[id_ruta]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\cargar datos\Lookup Ruta.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[destino.turybusdw]"
+                  connectionManagerRefId="Package.ConnectionManagers[destino.turybusdw]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\cargar datos\Lookup Ruta.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\cargar datos\Lookup Ruta.Inputs[Lookup Input].Columns[id_ruta]"
+                      cachedDataType="i4"
+                      cachedName="id_ruta"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[id_ruta]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">sk_ruta</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\cargar datos\Lookup Ruta.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\cargar datos\Lookup Ruta.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\cargar datos\Lookup Ruta.Outputs[Lookup Match Output].Columns[sk_ruta]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\cargar datos\Lookup Ruta.Outputs[Lookup Match Output].Columns[sk_ruta]"
+                      name="sk_ruta"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">sk_ruta</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\cargar datos\Lookup Ruta.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\cargar datos\Lookup Ruta.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\cargar datos\Lookup Ruta.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\cargar datos\Lookup Ruta.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\cargar datos\Lookup Ruta.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\cargar datos\Lookup Ruta.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\cargar datos\Lookup Ruta.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\cargar datos\Lookup Ruta.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\cargar datos\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[staging].[Viajes]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\cargar datos\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[destino.turybusdw]"
+                  connectionManagerRefId="Package.ConnectionManagers[destino.turybusdw]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\cargar datos\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\cargar datos\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[sk_actividad]"
+                      cachedDataType="i4"
+                      cachedName="sk_actividad"
+                      externalMetadataColumnId="Package\cargar datos\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[sk_actividad]"
+                      lineageId="Package\cargar datos\Lookup Actividad.Outputs[Lookup Match Output].Columns[sk_actividad]" />
+                    <inputColumn
+                      refId="Package\cargar datos\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[sk_lugar]"
+                      cachedDataType="i4"
+                      cachedName="sk_lugar"
+                      externalMetadataColumnId="Package\cargar datos\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[sk_lugar]"
+                      lineageId="Package\cargar datos\Lookup Lugar.Outputs[Lookup Match Output].Columns[sk_lugar]" />
+                    <inputColumn
+                      refId="Package\cargar datos\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[sk_ruta]"
+                      cachedDataType="i4"
+                      cachedName="sk_ruta"
+                      externalMetadataColumnId="Package\cargar datos\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[sk_ruta]"
+                      lineageId="Package\cargar datos\Lookup Ruta.Outputs[Lookup Match Output].Columns[sk_ruta]" />
+                    <inputColumn
+                      refId="Package\cargar datos\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[id_conductor]"
+                      cachedDataType="i4"
+                      cachedName="id_conductor"
+                      externalMetadataColumnId="Package\cargar datos\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[sk_conductor]"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[id_conductor]" />
+                    <inputColumn
+                      refId="Package\cargar datos\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[id_autobus]"
+                      cachedDataType="i4"
+                      cachedName="id_autobus"
+                      externalMetadataColumnId="Package\cargar datos\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[sk_autobus]"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[id_autobus]" />
+                    <inputColumn
+                      refId="Package\cargar datos\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[sk_viajes]"
+                      cachedDataType="i4"
+                      cachedName="sk_viajes"
+                      externalMetadataColumnId="Package\cargar datos\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[sk_viajes]"
+                      lineageId="Package\cargar datos\Lookup.Outputs[Lookup Match Output].Columns[sk_viajes]" />
+                    <inputColumn
+                      refId="Package\cargar datos\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[BilleteDateKey]"
+                      cachedDataType="i4"
+                      cachedName="BilleteDateKey"
+                      externalMetadataColumnId="Package\cargar datos\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[sk_fecha]"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[BilleteDateKey]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\cargar datos\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[sk_ruta]"
+                      dataType="i4"
+                      name="sk_ruta" />
+                    <externalMetadataColumn
+                      refId="Package\cargar datos\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[sk_fecha]"
+                      dataType="i4"
+                      name="sk_fecha" />
+                    <externalMetadataColumn
+                      refId="Package\cargar datos\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[sk_autobus]"
+                      dataType="i4"
+                      name="sk_autobus" />
+                    <externalMetadataColumn
+                      refId="Package\cargar datos\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[sk_conductor]"
+                      dataType="i4"
+                      name="sk_conductor" />
+                    <externalMetadataColumn
+                      refId="Package\cargar datos\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[sk_lugar]"
+                      dataType="i4"
+                      name="sk_lugar" />
+                    <externalMetadataColumn
+                      refId="Package\cargar datos\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[sk_actividad]"
+                      dataType="i4"
+                      name="sk_actividad" />
+                    <externalMetadataColumn
+                      refId="Package\cargar datos\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[cantidad_viajeros]"
+                      dataType="i4"
+                      name="cantidad_viajeros" />
+                    <externalMetadataColumn
+                      refId="Package\cargar datos\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ingresos_totales]"
+                      dataType="numeric"
+                      name="ingresos_totales"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\cargar datos\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[sk_viajes]"
+                      dataType="i4"
+                      name="sk_viajes" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\cargar datos\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\cargar datos\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\cargar datos\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\cargar datos\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\cargar datos\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\cargar datos\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\cargar datos\OLE DB Destination 1"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination 1"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[hechos].[Hechos_Viajes]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\cargar datos\OLE DB Destination 1.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[destino.turybusdw]"
+                  connectionManagerRefId="Package.ConnectionManagers[destino.turybusdw]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\cargar datos\OLE DB Destination 1.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\cargar datos\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[sk_actividad]"
+                      cachedDataType="i4"
+                      cachedName="sk_actividad"
+                      externalMetadataColumnId="Package\cargar datos\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[sk_actividad]"
+                      lineageId="Package\cargar datos\Lookup Actividad.Outputs[Lookup Match Output].Columns[sk_actividad]" />
+                    <inputColumn
+                      refId="Package\cargar datos\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[sk_lugar]"
+                      cachedDataType="i4"
+                      cachedName="sk_lugar"
+                      externalMetadataColumnId="Package\cargar datos\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[sk_lugar]"
+                      lineageId="Package\cargar datos\Lookup Lugar.Outputs[Lookup Match Output].Columns[sk_lugar]" />
+                    <inputColumn
+                      refId="Package\cargar datos\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[sk_ruta]"
+                      cachedDataType="i4"
+                      cachedName="sk_ruta"
+                      externalMetadataColumnId="Package\cargar datos\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[sk_ruta]"
+                      lineageId="Package\cargar datos\Lookup Ruta.Outputs[Lookup Match Output].Columns[sk_ruta]" />
+                    <inputColumn
+                      refId="Package\cargar datos\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[sk_fecha]"
+                      cachedDataType="i4"
+                      cachedName="sk_fecha"
+                      externalMetadataColumnId="Package\cargar datos\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[sk_fecha]"
+                      lineageId="Package\cargar datos\295:invalid" />
+                    <inputColumn
+                      refId="Package\cargar datos\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[sk_autobus]"
+                      cachedDataType="i4"
+                      cachedName="sk_autobus"
+                      externalMetadataColumnId="Package\cargar datos\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[sk_autobus]"
+                      lineageId="Package\cargar datos\Lookup Autobus.Outputs[Lookup Match Output].Columns[sk_autobus]" />
+                    <inputColumn
+                      refId="Package\cargar datos\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[sk_autobus1]"
+                      cachedDataType="i4"
+                      cachedName="sk_autobus"
+                      externalMetadataColumnId="Package\cargar datos\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[sk_conductor]"
+                      lineageId="Package\cargar datos\Lookup Conductor.Outputs[Lookup Match Output].Columns[sk_autobus]" />
+                    <inputColumn
+                      refId="Package\cargar datos\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[id_billete]"
+                      cachedDataType="i4"
+                      cachedName="id_billete"
+                      externalMetadataColumnId="Package\cargar datos\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[id_viaje]"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[id_billete]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\cargar datos\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[id_viaje]"
+                      dataType="i4"
+                      name="id_viaje" />
+                    <externalMetadataColumn
+                      refId="Package\cargar datos\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[sk_ruta]"
+                      dataType="i4"
+                      name="sk_ruta" />
+                    <externalMetadataColumn
+                      refId="Package\cargar datos\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[sk_fecha]"
+                      dataType="i4"
+                      name="sk_fecha" />
+                    <externalMetadataColumn
+                      refId="Package\cargar datos\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[sk_autobus]"
+                      dataType="i4"
+                      name="sk_autobus" />
+                    <externalMetadataColumn
+                      refId="Package\cargar datos\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[sk_conductor]"
+                      dataType="i4"
+                      name="sk_conductor" />
+                    <externalMetadataColumn
+                      refId="Package\cargar datos\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[sk_lugar]"
+                      dataType="i4"
+                      name="sk_lugar" />
+                    <externalMetadataColumn
+                      refId="Package\cargar datos\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[sk_actividad]"
+                      dataType="i4"
+                      name="sk_actividad" />
+                    <externalMetadataColumn
+                      refId="Package\cargar datos\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[cantidad_viajeros]"
+                      dataType="i4"
+                      name="cantidad_viajeros" />
+                    <externalMetadataColumn
+                      refId="Package\cargar datos\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[ingresos_totales]"
+                      dataType="numeric"
+                      name="ingresos_totales"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\cargar datos\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[sk_viajes]"
+                      dataType="i4"
+                      name="sk_viajes" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\cargar datos\OLE DB Destination 1.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\cargar datos\OLE DB Destination 1.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\cargar datos\OLE DB Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\cargar datos\OLE DB Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\cargar datos\OLE DB Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\cargar datos\OLE DB Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\cargar datos\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">EXECUTE [dbo].[GetBilleteChangesByRowVersion] 
+   @startRow = ?
+  ,@endRow = ?</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping">"@startRow:Input",{BB22837E-16AC-44D2-95AA-8B8AF1E07C33};"@endRow:Input",{81471657-3276-4743-A33D-455B81E5107F};</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\cargar datos\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[origen.turybus]"
+                  connectionManagerRefId="Package.ConnectionManagers[origen.turybus]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[id_billete]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[id_billete]"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[id_billete]"
+                      name="id_billete"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[id_servicio]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[id_servicio]"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[id_servicio]"
+                      name="id_servicio"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[id_viajero]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[id_viajero]"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[id_viajero]"
+                      name="id_viajero"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[BilleteDateKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[BilleteDateKey]"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[BilleteDateKey]"
+                      name="BilleteDateKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[importe_billete]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[importe_billete]"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[importe_billete]"
+                      name="importe_billete"
+                      precision="10"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[id_autobus]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[id_autobus]"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[id_autobus]"
+                      name="id_autobus"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[id_actividad]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[id_actividad]"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[id_actividad]"
+                      name="id_actividad"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[id_conductor]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[id_conductor]"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[id_conductor]"
+                      name="id_conductor"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[id_lugar]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[id_lugar]"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[id_lugar]"
+                      name="id_lugar"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[id_ruta]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[id_ruta]"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[id_ruta]"
+                      name="id_ruta"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[id_billete]"
+                      dataType="i4"
+                      name="id_billete" />
+                    <externalMetadataColumn
+                      refId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[id_servicio]"
+                      dataType="i4"
+                      name="id_servicio" />
+                    <externalMetadataColumn
+                      refId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[id_viajero]"
+                      dataType="i4"
+                      name="id_viajero" />
+                    <externalMetadataColumn
+                      refId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[BilleteDateKey]"
+                      dataType="i4"
+                      name="BilleteDateKey" />
+                    <externalMetadataColumn
+                      refId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[importe_billete]"
+                      dataType="numeric"
+                      name="importe_billete"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[id_autobus]"
+                      dataType="i4"
+                      name="id_autobus" />
+                    <externalMetadataColumn
+                      refId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[id_actividad]"
+                      dataType="i4"
+                      name="id_actividad" />
+                    <externalMetadataColumn
+                      refId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[id_conductor]"
+                      dataType="i4"
+                      name="id_conductor" />
+                    <externalMetadataColumn
+                      refId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[id_lugar]"
+                      dataType="i4"
+                      name="id_lugar" />
+                    <externalMetadataColumn
+                      refId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[id_ruta]"
+                      dataType="i4"
+                      name="id_ruta" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[id_billete]"
+                      dataType="i4"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[id_billete]"
+                      name="id_billete" />
+                    <outputColumn
+                      refId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[id_servicio]"
+                      dataType="i4"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[id_servicio]"
+                      name="id_servicio" />
+                    <outputColumn
+                      refId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[id_viajero]"
+                      dataType="i4"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[id_viajero]"
+                      name="id_viajero" />
+                    <outputColumn
+                      refId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[BilleteDateKey]"
+                      dataType="i4"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[BilleteDateKey]"
+                      name="BilleteDateKey" />
+                    <outputColumn
+                      refId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[importe_billete]"
+                      dataType="numeric"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[importe_billete]"
+                      name="importe_billete"
+                      precision="10"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[id_autobus]"
+                      dataType="i4"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[id_autobus]"
+                      name="id_autobus" />
+                    <outputColumn
+                      refId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[id_actividad]"
+                      dataType="i4"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[id_actividad]"
+                      name="id_actividad" />
+                    <outputColumn
+                      refId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[id_conductor]"
+                      dataType="i4"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[id_conductor]"
+                      name="id_conductor" />
+                    <outputColumn
+                      refId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[id_lugar]"
+                      dataType="i4"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[id_lugar]"
+                      name="id_lugar" />
+                    <outputColumn
+                      refId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[id_ruta]"
+                      dataType="i4"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[id_ruta]"
+                      name="id_ruta" />
+                    <outputColumn
+                      refId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\cargar datos.Paths[Lookup Match Output]"
+              endId="Package\cargar datos\Lookup Autobus.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\cargar datos\Lookup Actividad.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\cargar datos.Paths[Lookup Match Output1]"
+              endId="Package\cargar datos\Lookup Conductor.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\cargar datos\Lookup Autobus.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\cargar datos.Paths[Lookup Match Output2]"
+              endId="Package\cargar datos\Lookup Lugar.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\cargar datos\Lookup Conductor.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\cargar datos.Paths[Lookup Match Output3]"
+              endId="Package\cargar datos\Lookup Ruta.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\cargar datos\Lookup Lugar.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\cargar datos.Paths[Lookup Match Output4]"
+              endId="Package\cargar datos\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Lookup Match Output"
+              startId="Package\cargar datos\Lookup.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\cargar datos.Paths[Lookup Match Output5]"
+              endId="Package\cargar datos\Lookup.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\cargar datos\Lookup Ruta.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\cargar datos.Paths[Lookup No Match Output]"
+              endId="Package\cargar datos\OLE DB Destination 1.Inputs[OLE DB Destination Input]"
+              name="Lookup No Match Output"
+              startId="Package\cargar datos\Lookup.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\cargar datos.Paths[OLE DB Source Output]"
+              endId="Package\cargar datos\Lookup Actividad.Inputs[Lookup Input]"
+              name="OLE DB Source Output"
+              startId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get LastRowVersion Viaje"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{C942A7C8-8DD1-43B4-B723-629594BCE4AC}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get LastRowVersion Viaje"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{07FC6E6A-1941-49F6-BFB8-590189804ECF}"
+          SQLTask:SqlStatementSource="execute  [dbo].[GetLastPackageRowVersion] @tableName='Viaje'"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="LastRowVersion"
+            SQLTask:DtsVariableName="User::LastRowVersion" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\GetDatabaseRowVersion"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{12E7F447-F9D8-45BC-8412-E412065378F4}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="GetDatabaseRowVersion"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{A79AC5C9-644B-46E6-98FD-D2DA7DEBB2DE}"
+          SQLTask:SqlStatementSource="EXECUTE [dbo].[GetDatabaseRowVersion] "
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="DBTS"
+            SQLTask:DtsVariableName="User::dbts" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Limpiar staging Viajes"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{84C8DD3D-2A6C-47C3-AB67-DE21005231D3}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Limpiar staging Viajes"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{07FC6E6A-1941-49F6-BFB8-590189804ECF}"
+          SQLTask:SqlStatementSource="truncate table  staging.Viajes" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\syn staging"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{7D5694DE-78BD-4D84-B0DD-8D7942BCA66A}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="syn staging"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{07FC6E6A-1941-49F6-BFB8-590189804ECF}"
+          SQLTask:SqlStatementSource="EXECUTE [dbo].[MergeHechos_Viaje] " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\update config"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{9030E26C-AB7E-4ED3-8B73-CB1C1A3DC145}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="update config"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{07FC6E6A-1941-49F6-BFB8-590189804ECF}"
+          SQLTask:SqlStatementSource="&#xA;EXECUTE  [dbo].[UpdateLastPackageRowVersion] @tableName='Viaje',@lastRowVersion=?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::dbts"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción]"
+      DTS:CreationName=""
+      DTS:DTSID="{30A93E2A-2B02-46FA-9A37-3FB1C4A9FE7D}"
+      DTS:From="Package\GetDatabaseRowVersion"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción"
+      DTS:To="Package\Get LastRowVersion Viaje" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{3AAD35F0-C999-4F45-8BCA-5FB7203CB804}"
+      DTS:From="Package\Get LastRowVersion Viaje"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 1"
+      DTS:To="Package\Limpiar staging Viajes" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{C1A1E4CD-DD4C-42AB-8373-488D5E5130F2}"
+      DTS:From="Package\Limpiar staging Viajes"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 2"
+      DTS:To="Package\cargar datos" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{A2AEB2CC-5C26-4CF5-A8D9-4C252F03118B}"
+      DTS:From="Package\cargar datos"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 3"
+      DTS:To="Package\syn staging" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{62F06947-E209-40D6-9DF7-82E2820D5F0D}"
+      DTS:From="Package\syn staging"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 4"
+      DTS:To="Package\update config" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="136,41.6"
+          Id="Package\cargar datos"
+          TopLeft="140.71428601383,305.117646791376" />
+        <NodeLayout
+          Size="214.4,41.6"
+          Id="Package\Get LastRowVersion Viaje"
+          TopLeft="106.071428087648,141.47058811129" />
+        <NodeLayout
+          Size="259.2,44.8"
+          Id="Package\GetDatabaseRowVersion"
+          TopLeft="82.857143033524,49.705882309372" />
+        <NodeLayout
+          Size="194.4,41.6"
+          Id="Package\Limpiar staging Viajes"
+          TopLeft="105.000000223517,221.764705687968" />
+        <NodeLayout
+          Size="169.6,41.6"
+          Id="Package\syn staging"
+          TopLeft="384.285715103758,259.247058657296" />
+        <NodeLayout
+          Size="142.4,41.6"
+          Id="Package\update config"
+          TopLeft="382.142857956339,364.011764447819" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción]"
+          TopLeft="212.864285560586,94.505882309372">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,46.964705801918"
+              Start="0,0"
+              End="0,39.464705801918">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39.464705801918" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 1]"
+          TopLeft="213.271428087648,183.07058811129">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-11.0714278641306,38.694117576678"
+              Start="0,0"
+              End="-11.0714278641306,31.194117576678">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.347058788339" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15.347058788339"
+                    Point2="0,19.347058788339"
+                    Point3="-4,19.347058788339" />
+                  <mssgle:LineSegment
+                    End="-7.07142786413061,19.347058788339" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-7.07142786413061,19.347058788339"
+                    Point2="-11.0714278641306,19.347058788339"
+                    Point3="-11.0714278641306,23.347058788339" />
+                  <mssgle:LineSegment
+                    End="-11.0714278641306,31.194117576678" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 2]"
+          TopLeft="205.457143118674,263.364705687968">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,41.752941103408"
+              Start="0,0"
+              End="0,34.252941103408">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.252941103408" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 3]"
+          TopLeft="276.71428601383,325.917646791376">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="107.571429089928,-45.87058813408"
+              Start="0,0"
+              End="100.071429089928,-45.87058813408">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="49.785714544964,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="49.785714544964,0"
+                    Point2="53.785714544964,0"
+                    Point3="53.785714544964,-4" />
+                  <mssgle:LineSegment
+                    End="53.785714544964,-41.87058813408" />
+                  <mssgle:CubicBezierSegment
+                    Point1="53.785714544964,-41.87058813408"
+                    Point2="53.785714544964,-45.87058813408"
+                    Point3="57.785714544964,-45.87058813408" />
+                  <mssgle:LineSegment
+                    End="100.071429089928,-45.87058813408" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 4]"
+          TopLeft="469.085715103758,300.847058657296">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-15.7428571474186,63.1647057905227"
+              Start="0,0"
+              End="-15.7428571474186,55.6647057905227">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.5823528952614" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,27.5823528952614"
+                    Point2="0,31.5823528952614"
+                    Point3="-4,31.5823528952614" />
+                  <mssgle:LineSegment
+                    End="-11.7428571474186,31.5823528952614" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-11.7428571474186,31.5823528952614"
+                    Point2="-15.7428571474186,31.5823528952614"
+                    Point3="-15.7428571474186,35.5823528952614" />
+                  <mssgle:LineSegment
+                    End="-15.7428571474186,55.6647057905227" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\cargar datos">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="137.6,41.6"
+          Id="Package\cargar datos\Lookup Ruta"
+          TopLeft="284.166651140485,323.26666441871" />
+        <NodeLayout
+          Size="152,41.6"
+          Id="Package\cargar datos\OLE DB Source"
+          TopLeft="225.714286194772,44.3529411375935" />
+        <NodeLayout
+          Size="157.6,41.6"
+          Id="Package\cargar datos\Lookup Actividad"
+          TopLeft="212.142859013612,111.95294122055" />
+        <NodeLayout
+          Size="163.2,41.6"
+          Id="Package\cargar datos\Lookup Conductor"
+          TopLeft="148.333325228758,210.599998535514" />
+        <NodeLayout
+          Size="141.6,41.6"
+          Id="Package\cargar datos\Lookup Lugar"
+          TopLeft="391.666645266944,259.999998191992" />
+        <NodeLayout
+          Size="171.2,41.6"
+          Id="Package\cargar datos\OLE DB Destination"
+          TopLeft="289.999984155099,424.46666416559" />
+        <NodeLayout
+          Size="180,41.6"
+          Id="Package\cargar datos\OLE DB Destination 1"
+          TopLeft="759.999958475433,442.66666418367" />
+        <NodeLayout
+          Size="112.8,41.6"
+          Id="Package\cargar datos\Lookup"
+          TopLeft="582.499968173604,387.333330790069" />
+        <NodeLayout
+          Size="153.6,41.6"
+          Id="Package\cargar datos\Lookup Autobus"
+          TopLeft="414.166644037599,163.799998860955" />
+        <EdgeLayout
+          Id="Package\cargar datos.Paths[OLE DB Source Output]"
+          TopLeft="301.714286194772,85.9529411375935">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-10.77142718116,26.0000000829562"
+              Start="0,0"
+              End="-10.77142718116,18.5000000829562">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,9.0000000414781" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,9.0000000414781"
+                    Point2="0,13.0000000414781"
+                    Point3="-4,13.0000000414781" />
+                  <mssgle:LineSegment
+                    End="-6.77142718115999,13.0000000414781" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-6.77142718115999,13.0000000414781"
+                    Point2="-10.77142718116,13.0000000414781"
+                    Point3="-10.77142718116,17.0000000414781" />
+                  <mssgle:LineSegment
+                    End="-10.77142718116,18.5000000829562" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\cargar datos.Paths[Lookup No Match Output]"
+          TopLeft="695.299968173604,408.133330790069">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="64.6999903018282,55.3333333936002"
+              Start="0,0"
+              End="57.1999903018282,55.3333333936002">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="28.3499951509141,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="28.3499951509141,0"
+                    Point2="32.3499951509141,0"
+                    Point3="32.3499951509141,4" />
+                  <mssgle:LineSegment
+                    End="32.3499951509141,51.3333333936002" />
+                  <mssgle:CubicBezierSegment
+                    Point1="32.3499951509141,51.3333333936002"
+                    Point2="32.3499951509141,55.3333333936002"
+                    Point3="36.3499951509141,55.3333333936002" />
+                  <mssgle:LineSegment
+                    End="57.1999903018282,55.3333333936002" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-32.3250439115859,-22,129.350078125,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\cargar datos.Paths[Lookup Match Output4]"
+          TopLeft="582.499968173604,413.733330790069">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-121.299984018505,31.5333333755204"
+              Start="0,0"
+              End="-113.799984018505,31.5333333755204">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-47.2155488078134,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-47.2155488078134,0"
+                    Point2="-51.2155488078134,0"
+                    Point3="-51.2155488078134,4" />
+                  <mssgle:LineSegment
+                    End="-51.2155488078134,27.5333333755204" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-51.2155488078134,27.5333333755204"
+                    Point2="-51.2155488078134,31.5333333755204"
+                    Point3="-55.2155488078134,31.5333333755204" />
+                  <mssgle:LineSegment
+                    End="-113.799984018505,31.5333333755204" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-99.4069355265634,-17.609375,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\cargar datos.Paths[Lookup Match Output3]"
+          TopLeft="391.666645266944,286.399998191992">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-38.6999941264586,36.8666662267185"
+              Start="0,0"
+              End="-38.6999941264586,29.3666662267185">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-34.6999941264586,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-34.6999941264586,0"
+                    Point2="-38.6999941264586,0"
+                    Point3="-38.6999941264586,4" />
+                  <mssgle:LineSegment
+                    End="-38.6999941264586,29.3666662267185" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-86.8913808452086,-17.609375,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\cargar datos.Paths[Lookup Match Output2]"
+          TopLeft="311.533325228758,236.999998535514">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="80.1333200381867,43.7999996564786"
+              Start="0,0"
+              End="72.6333200381867,43.7999996564786">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="29.8340684605677,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="29.8340684605677,0"
+                    Point2="33.8340684605677,0"
+                    Point3="33.8340684605677,4" />
+                  <mssgle:LineSegment
+                    End="33.8340684605677,39.7999996564786" />
+                  <mssgle:CubicBezierSegment
+                    Point1="33.8340684605677,39.7999996564786"
+                    Point2="33.8340684605677,43.7999996564786"
+                    Point3="37.8340684605677,43.7999996564786" />
+                  <mssgle:LineSegment
+                    End="72.6333200381867,43.7999996564786" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-14.3573182581823,-17.609375,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\cargar datos.Paths[Lookup Match Output1]"
+          TopLeft="414.166644037599,190.199998860955">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-102.633318808841,41.1999996745587"
+              Start="0,0"
+              End="-95.1333188088408,41.1999996745587">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-39.3340679415106,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-39.3340679415106,0"
+                    Point2="-43.3340679415106,0"
+                    Point3="-43.3340679415106,4" />
+                  <mssgle:LineSegment
+                    End="-43.3340679415106,37.1999996745587" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-43.3340679415106,37.1999996745587"
+                    Point2="-43.3340679415106,41.1999996745587"
+                    Point3="-47.3340679415106,41.1999996745587" />
+                  <mssgle:LineSegment
+                    End="-95.1333188088408,41.1999996745587" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-91.5254546602606,-17.609375,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\cargar datos.Paths[Lookup Match Output]"
+          TopLeft="369.742859013612,132.75294122055">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="44.4237850239865,51.8470576404055"
+              Start="0,0"
+              End="36.9237850239865,51.8470576404055">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="18.2118925119933,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="18.2118925119933,0"
+                    Point2="22.2118925119933,0"
+                    Point3="22.2118925119933,4" />
+                  <mssgle:LineSegment
+                    End="22.2118925119933,47.8470576404055" />
+                  <mssgle:CubicBezierSegment
+                    Point1="22.2118925119933,47.8470576404055"
+                    Point2="22.2118925119933,51.8470576404055"
+                    Point3="26.2118925119933,51.8470576404055" />
+                  <mssgle:LineSegment
+                    End="36.9237850239865,51.8470576404055" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-25.9794942067567,-17.609375,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\cargar datos.Paths[Lookup Match Output5]"
+          TopLeft="421.766651140485,344.066664418711">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="160.733317033119,58.4666663713585"
+              Start="0,0"
+              End="153.233317033119,58.4666663713585">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="88.8681387302464,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="88.8681387302464,0"
+                    Point2="92.8681387302464,0"
+                    Point3="92.8681387302464,4" />
+                  <mssgle:LineSegment
+                    End="92.8681387302464,54.4666663713585" />
+                  <mssgle:CubicBezierSegment
+                    Point1="92.8681387302464,54.4666663713585"
+                    Point2="92.8681387302464,58.4666663713585"
+                    Point3="96.8681387302464,58.4666663713585" />
+                  <mssgle:LineSegment
+                    End="153.233317033119,58.4666663713585" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="44.6767520114964,-17.609375,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\cargar datos\Lookup Ruta">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[hechos].[Hechos_Viajes]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\cargar datos\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\cargar datos\Lookup Actividad">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[hechos].[Hechos_Viajes]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\cargar datos\Lookup Conductor">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[hechos].[Hechos_Viajes]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\cargar datos\Lookup Lugar">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[hechos].[Hechos_Viajes]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\cargar datos\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\cargar datos\OLE DB Destination 1">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\cargar datos\Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[hechos].[Hechos_Viajes]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\cargar datos\Lookup Autobus">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[hechos].[Hechos_Viajes]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

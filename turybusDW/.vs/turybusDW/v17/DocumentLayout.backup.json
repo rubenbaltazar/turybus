@@ -18,23 +18,22 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Todos.sql",
-              "DocumentMoniker": "D:\\proyectosgit\\turybusDW\\Schema\\Programability\\Todos.sql",
-              "RelativeDocumentMoniker": "Schema\\Programability\\Todos.sql",
-              "ToolTip": "D:\\proyectosgit\\turybusDW\\Schema\\Programability\\Todos.sql",
-              "RelativeToolTip": "Schema\\Programability\\Todos.sql",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2025-03-10T03:50:05.218Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Todos.sql ",
+              "DocumentMoniker": "D:\\proyectosgit\\turybusDW\\Schema\\Programability\\Todos.sql",
+              "RelativeDocumentMoniker": "Schema\\Programability\\Todos.sql",
+              "ToolTip": "D:\\proyectosgit\\turybusDW\\Schema\\Programability\\Todos.sql\r\n(localdb)\\ProjectModels.turybusDW\r\n(LAPTOP-RGHC6UT6\\rbaltazar)",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2025-03-10T03:50:05.218Z",
+              "EditorCaption": ""
             }
           ]
         }

@@ -11,8 +11,8 @@
   DTS:LocaleID="2058"
   DTS:ObjectName="Autobus"
   DTS:PackageType="5"
-  DTS:VersionBuild="25"
-  DTS:VersionGUID="{DCFBA3CD-A442-4428-9F9B-4A85EB4218E0}">
+  DTS:VersionBuild="27"
+  DTS:VersionGUID="{F1BD3740-7ECE-48FE-9994-DE80EF86CA01}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -1184,6 +1184,10 @@ where [refTable].[id_autobus] = ?</property>
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
+          Size="170.4,41.6"
+          Id="Package\cargar datos\OLE DB Destination"
+          TopLeft="81.4285716019115,193.647058657296" />
+        <NodeLayout
           Size="149.6,41.6"
           Id="Package\cargar datos\OLE DB Source"
           TopLeft="225.714286194772,44.3529411375935" />
@@ -1191,6 +1195,10 @@ where [refTable].[id_autobus] = ?</property>
           Size="112.8,41.6"
           Id="Package\cargar datos\Lookup"
           TopLeft="237.142857647672,135.352941057829" />
+        <NodeLayout
+          Size="179.2,41.6"
+          Id="Package\cargar datos\OLE DB Destination 1"
+          TopLeft="391.42857226182,178.894117519703" />
         <EdgeLayout
           Id="Package\cargar datos.Paths[OLE DB Source Output]"
           TopLeft="297.028571921222,85.9529411375935">
@@ -1210,47 +1218,11 @@ where [refTable].[id_autobus] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="170.4,41.6"
-          Id="Package\cargar datos\OLE DB Destination"
-          TopLeft="81.4285716019115,193.647058657296" />
-        <EdgeLayout
-          Id="Package\cargar datos.Paths[Lookup Match Output]"
-          TopLeft="237.142857647672,156.152941057829">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-70.5142860457605,37.4941175994679"
-              Start="0,0"
-              End="-70.5142860457605,29.9941175994679">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="-66.5142860457605,0" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-66.5142860457605,0"
-                    Point2="-70.5142860457605,0"
-                    Point3="-70.5142860457605,4" />
-                  <mssgle:LineSegment
-                    End="-70.5142860457605,29.9941175994679" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-118.705672764511,-17.609375,96.3827734375,11.609375"
+              BoundingBox="0,0,0,0"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="179.2,41.6"
-          Id="Package\cargar datos\OLE DB Destination 1"
-          TopLeft="391.42857226182,178.894117519703" />
         <EdgeLayout
           Id="Package\cargar datos.Paths[Lookup No Match Output]"
           TopLeft="349.942857647672,156.152941057829">
@@ -1284,6 +1256,36 @@ where [refTable].[id_autobus] = ?</property>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
               BoundingBox="-35.063529411676,-17.609375,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\cargar datos.Paths[Lookup Match Output]"
+          TopLeft="237.142857647672,156.152941057829">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-70.5142860457605,37.4941175994679"
+              Start="0,0"
+              End="-70.5142860457605,29.9941175994679">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-66.5142860457605,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-66.5142860457605,0"
+                    Point2="-70.5142860457605,0"
+                    Point3="-70.5142860457605,4" />
+                  <mssgle:LineSegment
+                    End="-70.5142860457605,29.9941175994679" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-118.705672764511,-17.609375,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>

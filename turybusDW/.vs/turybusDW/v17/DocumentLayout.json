@@ -3,12 +3,20 @@
   "WorkspaceRootPath": "D:\\proyectosgit\\turybusDW\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{6705DA2D-2190-4B24-B058-F2C3D4E44ACD}|turybusDW.sqlproj|D:\\proyectosgit\\turybusDW\\Schema\\Tables\\Dim_Viajero.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
+      "RelativeMoniker": "D:0:0:{6705DA2D-2190-4B24-B058-F2C3D4E44ACD}|turybusDW.sqlproj|solutionrelative:Schema\\Tables\\Dim_Viajero.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{6705DA2D-2190-4B24-B058-F2C3D4E44ACD}|turybusDW.sqlproj|D:\\proyectosgit\\turybusDW\\Schema\\Programability\\Todos.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
       "RelativeMoniker": "D:0:0:{6705DA2D-2190-4B24-B058-F2C3D4E44ACD}|turybusDW.sqlproj|solutionrelative:Schema\\Programability\\Todos.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6705DA2D-2190-4B24-B058-F2C3D4E44ACD}|turybusDW.sqlproj|D:\\proyectosgit\\turybusDW\\Schema\\Programability\\Todos.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame",
       "RelativeMoniker": "D:0:0:{6705DA2D-2190-4B24-B058-F2C3D4E44ACD}|turybusDW.sqlproj|solutionrelative:Schema\\Programability\\Todos.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6705DA2D-2190-4B24-B058-F2C3D4E44ACD}|turybusDW.sqlproj|D:\\proyectosgit\\turybusDW\\Schema\\Tables\\Dim_Viajero.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame",
+      "RelativeMoniker": "D:0:0:{6705DA2D-2190-4B24-B058-F2C3D4E44ACD}|turybusDW.sqlproj|solutionrelative:Schema\\Tables\\Dim_Viajero.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame"
     }
   ],
   "DocumentGroupContainers": [
@@ -23,18 +31,24 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Todos.sql",
-              "DocumentMoniker": "D:\\proyectosgit\\turybusDW\\Schema\\Programability\\Todos.sql",
-              "RelativeDocumentMoniker": "Schema\\Programability\\Todos.sql",
-              "ToolTip": "D:\\proyectosgit\\turybusDW\\Schema\\Programability\\Todos.sql",
-              "RelativeToolTip": "Schema\\Programability\\Todos.sql",
+              "Title": "Dim_Viajero.sql ",
+              "DocumentMoniker": "D:\\proyectosgit\\turybusDW\\Schema\\Tables\\Dim_Viajero.sql",
+              "RelativeDocumentMoniker": "Schema\\Tables\\Dim_Viajero.sql",
+              "ToolTip": "D:\\proyectosgit\\turybusDW\\Schema\\Tables\\Dim_Viajero.sql\r\n(localdb)\\ProjectModels.turybusDW\r\n(LAPTOP-RGHC6UT6\\rbaltazar)",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2025-03-10T03:50:05.218Z",
+              "WhenOpened": "2025-03-18T20:11:27.97Z",
               "EditorCaption": ""
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Todos.sql ",
+              "DocumentMoniker": "D:\\proyectosgit\\turybusDW\\Schema\\Programability\\Todos.sql",
+              "RelativeDocumentMoniker": "Schema\\Programability\\Todos.sql",
+              "ToolTip": "D:\\proyectosgit\\turybusDW\\Schema\\Programability\\Todos.sql\r\n(localdb)\\ProjectModels.turybusDW\r\n(LAPTOP-RGHC6UT6\\rbaltazar)",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2025-03-10T03:50:05.218Z",
+              "EditorCaption": ""
             }
           ]
         }

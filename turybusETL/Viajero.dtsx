@@ -1,0 +1,1380 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="3/18/2025 4:58:36 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="LAPTOP-RGHC6UT6"
+  DTS:CreatorName="LAPTOP-RGHC6UT6\rbaltazar"
+  DTS:DTSID="{1A8AACB3-7FC0-4DEE-A35C-56274FDEBECA}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.0"
+  DTS:LocaleID="2058"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="44"
+  DTS:VersionGUID="{435A60BE-52DC-40A3-AE59-AA18D1204A87}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[destino.turybusdw]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{AD557E9B-8F27-49FC-8637-42C7BE64C60A}"
+      DTS:ObjectName="destino.turybusdw">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=turybusdw;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{AD557E9B-8F27-49FC-8637-42C7BE64C60A}localhost.turybusdw;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[origen.turybus]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{9B3CD3D5-40FC-4A8D-82F8-55D03F34059F}"
+      DTS:ObjectName="origen.turybus">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=turybus;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{9B3CD3D5-40FC-4A8D-82F8-55D03F34059F}localhost.turybus;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{3C3BF194-6894-47D6-96D8-BF116875A5FF}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="dbts">
+      <DTS:VariableValue
+        DTS:DataType="20">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{0182547A-0EC6-4C7D-9FE6-434F7AD3072A}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="LastRowVersion">
+      <DTS:VariableValue
+        DTS:DataType="20">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\actualizar configuracion"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{246ED196-23DF-4F07-8DA6-583EFC44F0C0}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="actualizar configuracion"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{AD557E9B-8F27-49FC-8637-42C7BE64C60A}"
+          SQLTask:SqlStatementSource="&#xA;EXECUTE  [dbo].[UpdateLastPackageRowVersion] @tableName='viajero',@lastRowVersion=?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::dbts"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Cargado de datos Viajero (Cliente)"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{E1F3EB58-7082-4C24-870D-7EAB466E955E}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Cargado de datos Viajero (Cliente)"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Cargado de datos Viajero (Cliente)\Lookup"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [dim].[Dim_Viajero]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from [dim].[Dim_Viajero]) [refTable]
+where [refTable].[id_viajero] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="sk_viajero" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="id_viajero" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="dni_viajero" dataType="DT_STR" length="20" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="nombres_viajero" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="apellidos_viajero" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="telefono_viajero" dataType="DT_STR" length="20" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="direccion_viajero" dataType="DT_STR" length="100" precision="0" scale="0" codePage="1252"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Cargado de datos Viajero (Cliente)\OLE DB Source.Outputs[OLE DB Source Output].Columns[id_viajero]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Cargado de datos Viajero (Cliente)\Lookup.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[destino.turybusdw]"
+                  connectionManagerRefId="Package.ConnectionManagers[destino.turybusdw]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Cargado de datos Viajero (Cliente)\Lookup.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Cargado de datos Viajero (Cliente)\Lookup.Inputs[Lookup Input].Columns[id_viajero]"
+                      cachedDataType="i4"
+                      cachedName="id_viajero"
+                      lineageId="Package\Cargado de datos Viajero (Cliente)\OLE DB Source.Outputs[OLE DB Source Output].Columns[id_viajero]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">id_viajero</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Cargado de datos Viajero (Cliente)\Lookup.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Cargado de datos Viajero (Cliente)\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargado de datos Viajero (Cliente)\Lookup.Outputs[Lookup Match Output].Columns[sk_viajero]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Cargado de datos Viajero (Cliente)\Lookup.Outputs[Lookup Match Output].Columns[sk_viajero]"
+                      name="sk_viajero"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">sk_viajero</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Cargado de datos Viajero (Cliente)\Lookup.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Cargado de datos Viajero (Cliente)\Lookup.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Cargado de datos Viajero (Cliente)\Lookup.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Cargado de datos Viajero (Cliente)\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargado de datos Viajero (Cliente)\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cargado de datos Viajero (Cliente)\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cargado de datos Viajero (Cliente)\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cargado de datos Viajero (Cliente)\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Cargado de datos Viajero (Cliente)\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[staging].[Viajero]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Cargado de datos Viajero (Cliente)\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[destino.turybusdw]"
+                  connectionManagerRefId="Package.ConnectionManagers[destino.turybusdw]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Cargado de datos Viajero (Cliente)\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Cargado de datos Viajero (Cliente)\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[dni_viajero]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="dni_viajero"
+                      externalMetadataColumnId="Package\Cargado de datos Viajero (Cliente)\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[dni_viajero]"
+                      lineageId="Package\Cargado de datos Viajero (Cliente)\OLE DB Source.Outputs[OLE DB Source Output].Columns[dni_viajero]" />
+                    <inputColumn
+                      refId="Package\Cargado de datos Viajero (Cliente)\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[nombres_viajero]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="nombres_viajero"
+                      externalMetadataColumnId="Package\Cargado de datos Viajero (Cliente)\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[nombres_viajero]"
+                      lineageId="Package\Cargado de datos Viajero (Cliente)\OLE DB Source.Outputs[OLE DB Source Output].Columns[nombres_viajero]" />
+                    <inputColumn
+                      refId="Package\Cargado de datos Viajero (Cliente)\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[apellidos_viajero]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="apellidos_viajero"
+                      externalMetadataColumnId="Package\Cargado de datos Viajero (Cliente)\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[apellidos_viajero]"
+                      lineageId="Package\Cargado de datos Viajero (Cliente)\OLE DB Source.Outputs[OLE DB Source Output].Columns[apellidos_viajero]" />
+                    <inputColumn
+                      refId="Package\Cargado de datos Viajero (Cliente)\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[telefono_viajero]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="telefono_viajero"
+                      externalMetadataColumnId="Package\Cargado de datos Viajero (Cliente)\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[telefono_viajero]"
+                      lineageId="Package\Cargado de datos Viajero (Cliente)\OLE DB Source.Outputs[OLE DB Source Output].Columns[telefono_viajero]" />
+                    <inputColumn
+                      refId="Package\Cargado de datos Viajero (Cliente)\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[direccion_viajero]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="direccion_viajero"
+                      externalMetadataColumnId="Package\Cargado de datos Viajero (Cliente)\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[direccion_viajero]"
+                      lineageId="Package\Cargado de datos Viajero (Cliente)\OLE DB Source.Outputs[OLE DB Source Output].Columns[direccion_viajero]" />
+                    <inputColumn
+                      refId="Package\Cargado de datos Viajero (Cliente)\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[sk_viajero]"
+                      cachedDataType="i4"
+                      cachedName="sk_viajero"
+                      externalMetadataColumnId="Package\Cargado de datos Viajero (Cliente)\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[sk_viajero]"
+                      lineageId="Package\Cargado de datos Viajero (Cliente)\Lookup.Outputs[Lookup Match Output].Columns[sk_viajero]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Cargado de datos Viajero (Cliente)\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[sk_viajero]"
+                      dataType="i4"
+                      name="sk_viajero" />
+                    <externalMetadataColumn
+                      refId="Package\Cargado de datos Viajero (Cliente)\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[dni_viajero]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="dni_viajero" />
+                    <externalMetadataColumn
+                      refId="Package\Cargado de datos Viajero (Cliente)\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[nombres_viajero]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="nombres_viajero" />
+                    <externalMetadataColumn
+                      refId="Package\Cargado de datos Viajero (Cliente)\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[apellidos_viajero]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="apellidos_viajero" />
+                    <externalMetadataColumn
+                      refId="Package\Cargado de datos Viajero (Cliente)\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[telefono_viajero]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="telefono_viajero" />
+                    <externalMetadataColumn
+                      refId="Package\Cargado de datos Viajero (Cliente)\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[direccion_viajero]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="direccion_viajero" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Cargado de datos Viajero (Cliente)\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Cargado de datos Viajero (Cliente)\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargado de datos Viajero (Cliente)\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cargado de datos Viajero (Cliente)\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cargado de datos Viajero (Cliente)\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cargado de datos Viajero (Cliente)\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Cargado de datos Viajero (Cliente)\OLE DB Destination 1"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination 1"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dim].[Dim_Viajero]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Cargado de datos Viajero (Cliente)\OLE DB Destination 1.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[destino.turybusdw]"
+                  connectionManagerRefId="Package.ConnectionManagers[destino.turybusdw]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Cargado de datos Viajero (Cliente)\OLE DB Destination 1.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Cargado de datos Viajero (Cliente)\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[id_viajero]"
+                      cachedDataType="i4"
+                      cachedName="id_viajero"
+                      externalMetadataColumnId="Package\Cargado de datos Viajero (Cliente)\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[id_viajero]"
+                      lineageId="Package\Cargado de datos Viajero (Cliente)\OLE DB Source.Outputs[OLE DB Source Output].Columns[id_viajero]" />
+                    <inputColumn
+                      refId="Package\Cargado de datos Viajero (Cliente)\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[dni_viajero]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="dni_viajero"
+                      externalMetadataColumnId="Package\Cargado de datos Viajero (Cliente)\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[dni_viajero]"
+                      lineageId="Package\Cargado de datos Viajero (Cliente)\OLE DB Source.Outputs[OLE DB Source Output].Columns[dni_viajero]" />
+                    <inputColumn
+                      refId="Package\Cargado de datos Viajero (Cliente)\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[nombres_viajero]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="nombres_viajero"
+                      externalMetadataColumnId="Package\Cargado de datos Viajero (Cliente)\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[nombres_viajero]"
+                      lineageId="Package\Cargado de datos Viajero (Cliente)\OLE DB Source.Outputs[OLE DB Source Output].Columns[nombres_viajero]" />
+                    <inputColumn
+                      refId="Package\Cargado de datos Viajero (Cliente)\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[apellidos_viajero]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="apellidos_viajero"
+                      externalMetadataColumnId="Package\Cargado de datos Viajero (Cliente)\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[apellidos_viajero]"
+                      lineageId="Package\Cargado de datos Viajero (Cliente)\OLE DB Source.Outputs[OLE DB Source Output].Columns[apellidos_viajero]" />
+                    <inputColumn
+                      refId="Package\Cargado de datos Viajero (Cliente)\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[telefono_viajero]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="telefono_viajero"
+                      externalMetadataColumnId="Package\Cargado de datos Viajero (Cliente)\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[telefono_viajero]"
+                      lineageId="Package\Cargado de datos Viajero (Cliente)\OLE DB Source.Outputs[OLE DB Source Output].Columns[telefono_viajero]" />
+                    <inputColumn
+                      refId="Package\Cargado de datos Viajero (Cliente)\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[direccion_viajero]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="direccion_viajero"
+                      externalMetadataColumnId="Package\Cargado de datos Viajero (Cliente)\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[direccion_viajero]"
+                      lineageId="Package\Cargado de datos Viajero (Cliente)\OLE DB Source.Outputs[OLE DB Source Output].Columns[direccion_viajero]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Cargado de datos Viajero (Cliente)\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[sk_viajero]"
+                      dataType="i4"
+                      name="sk_viajero" />
+                    <externalMetadataColumn
+                      refId="Package\Cargado de datos Viajero (Cliente)\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[id_viajero]"
+                      dataType="i4"
+                      name="id_viajero" />
+                    <externalMetadataColumn
+                      refId="Package\Cargado de datos Viajero (Cliente)\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[dni_viajero]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="dni_viajero" />
+                    <externalMetadataColumn
+                      refId="Package\Cargado de datos Viajero (Cliente)\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[nombres_viajero]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="nombres_viajero" />
+                    <externalMetadataColumn
+                      refId="Package\Cargado de datos Viajero (Cliente)\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[apellidos_viajero]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="apellidos_viajero" />
+                    <externalMetadataColumn
+                      refId="Package\Cargado de datos Viajero (Cliente)\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[telefono_viajero]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="telefono_viajero" />
+                    <externalMetadataColumn
+                      refId="Package\Cargado de datos Viajero (Cliente)\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[direccion_viajero]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="direccion_viajero" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Cargado de datos Viajero (Cliente)\OLE DB Destination 1.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Cargado de datos Viajero (Cliente)\OLE DB Destination 1.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargado de datos Viajero (Cliente)\OLE DB Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cargado de datos Viajero (Cliente)\OLE DB Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cargado de datos Viajero (Cliente)\OLE DB Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cargado de datos Viajero (Cliente)\OLE DB Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Cargado de datos Viajero (Cliente)\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[ventas].[Viajero]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">EXECUTE [dbo].[GetViajeroChangesByRowVersion]  @startRow=? , @endRow=?</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping">"@startRow:Input",{0182547A-0EC6-4C7D-9FE6-434F7AD3072A};"@endRow:Input",{3C3BF194-6894-47D6-96D8-BF116875A5FF};</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Cargado de datos Viajero (Cliente)\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[origen.turybus]"
+                  connectionManagerRefId="Package.ConnectionManagers[origen.turybus]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Cargado de datos Viajero (Cliente)\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargado de datos Viajero (Cliente)\OLE DB Source.Outputs[OLE DB Source Output].Columns[id_viajero]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargado de datos Viajero (Cliente)\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[id_viajero]"
+                      lineageId="Package\Cargado de datos Viajero (Cliente)\OLE DB Source.Outputs[OLE DB Source Output].Columns[id_viajero]"
+                      name="id_viajero"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargado de datos Viajero (Cliente)\OLE DB Source.Outputs[OLE DB Source Output].Columns[dni_viajero]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargado de datos Viajero (Cliente)\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[dni_viajero]"
+                      length="20"
+                      lineageId="Package\Cargado de datos Viajero (Cliente)\OLE DB Source.Outputs[OLE DB Source Output].Columns[dni_viajero]"
+                      name="dni_viajero"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargado de datos Viajero (Cliente)\OLE DB Source.Outputs[OLE DB Source Output].Columns[nombres_viajero]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargado de datos Viajero (Cliente)\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[nombres_viajero]"
+                      length="50"
+                      lineageId="Package\Cargado de datos Viajero (Cliente)\OLE DB Source.Outputs[OLE DB Source Output].Columns[nombres_viajero]"
+                      name="nombres_viajero"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargado de datos Viajero (Cliente)\OLE DB Source.Outputs[OLE DB Source Output].Columns[apellidos_viajero]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargado de datos Viajero (Cliente)\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[apellidos_viajero]"
+                      length="50"
+                      lineageId="Package\Cargado de datos Viajero (Cliente)\OLE DB Source.Outputs[OLE DB Source Output].Columns[apellidos_viajero]"
+                      name="apellidos_viajero"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargado de datos Viajero (Cliente)\OLE DB Source.Outputs[OLE DB Source Output].Columns[telefono_viajero]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargado de datos Viajero (Cliente)\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[telefono_viajero]"
+                      length="20"
+                      lineageId="Package\Cargado de datos Viajero (Cliente)\OLE DB Source.Outputs[OLE DB Source Output].Columns[telefono_viajero]"
+                      name="telefono_viajero"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargado de datos Viajero (Cliente)\OLE DB Source.Outputs[OLE DB Source Output].Columns[direccion_viajero]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargado de datos Viajero (Cliente)\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[direccion_viajero]"
+                      length="100"
+                      lineageId="Package\Cargado de datos Viajero (Cliente)\OLE DB Source.Outputs[OLE DB Source Output].Columns[direccion_viajero]"
+                      name="direccion_viajero"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargado de datos Viajero (Cliente)\OLE DB Source.Outputs[OLE DB Source Output].Columns[rowversion]"
+                      dataType="bytes"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargado de datos Viajero (Cliente)\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[rowversion]"
+                      length="8"
+                      lineageId="Package\Cargado de datos Viajero (Cliente)\OLE DB Source.Outputs[OLE DB Source Output].Columns[rowversion]"
+                      name="rowversion"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Cargado de datos Viajero (Cliente)\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[id_viajero]"
+                      dataType="i4"
+                      name="id_viajero" />
+                    <externalMetadataColumn
+                      refId="Package\Cargado de datos Viajero (Cliente)\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[dni_viajero]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="dni_viajero" />
+                    <externalMetadataColumn
+                      refId="Package\Cargado de datos Viajero (Cliente)\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[nombres_viajero]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="nombres_viajero" />
+                    <externalMetadataColumn
+                      refId="Package\Cargado de datos Viajero (Cliente)\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[apellidos_viajero]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="apellidos_viajero" />
+                    <externalMetadataColumn
+                      refId="Package\Cargado de datos Viajero (Cliente)\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[telefono_viajero]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="telefono_viajero" />
+                    <externalMetadataColumn
+                      refId="Package\Cargado de datos Viajero (Cliente)\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[direccion_viajero]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="direccion_viajero" />
+                    <externalMetadataColumn
+                      refId="Package\Cargado de datos Viajero (Cliente)\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[rowversion]"
+                      dataType="bytes"
+                      length="8"
+                      name="rowversion" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Cargado de datos Viajero (Cliente)\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargado de datos Viajero (Cliente)\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[id_viajero]"
+                      dataType="i4"
+                      lineageId="Package\Cargado de datos Viajero (Cliente)\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[id_viajero]"
+                      name="id_viajero" />
+                    <outputColumn
+                      refId="Package\Cargado de datos Viajero (Cliente)\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[dni_viajero]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\Cargado de datos Viajero (Cliente)\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[dni_viajero]"
+                      name="dni_viajero" />
+                    <outputColumn
+                      refId="Package\Cargado de datos Viajero (Cliente)\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[nombres_viajero]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Cargado de datos Viajero (Cliente)\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[nombres_viajero]"
+                      name="nombres_viajero" />
+                    <outputColumn
+                      refId="Package\Cargado de datos Viajero (Cliente)\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[apellidos_viajero]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Cargado de datos Viajero (Cliente)\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[apellidos_viajero]"
+                      name="apellidos_viajero" />
+                    <outputColumn
+                      refId="Package\Cargado de datos Viajero (Cliente)\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[telefono_viajero]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\Cargado de datos Viajero (Cliente)\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[telefono_viajero]"
+                      name="telefono_viajero" />
+                    <outputColumn
+                      refId="Package\Cargado de datos Viajero (Cliente)\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[direccion_viajero]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\Cargado de datos Viajero (Cliente)\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[direccion_viajero]"
+                      name="direccion_viajero" />
+                    <outputColumn
+                      refId="Package\Cargado de datos Viajero (Cliente)\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[rowversion]"
+                      dataType="bytes"
+                      length="8"
+                      lineageId="Package\Cargado de datos Viajero (Cliente)\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[rowversion]"
+                      name="rowversion" />
+                    <outputColumn
+                      refId="Package\Cargado de datos Viajero (Cliente)\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cargado de datos Viajero (Cliente)\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cargado de datos Viajero (Cliente)\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cargado de datos Viajero (Cliente)\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Cargado de datos Viajero (Cliente).Paths[Lookup Match Output]"
+              endId="Package\Cargado de datos Viajero (Cliente)\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Lookup Match Output"
+              startId="Package\Cargado de datos Viajero (Cliente)\Lookup.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Cargado de datos Viajero (Cliente).Paths[Lookup No Match Output]"
+              endId="Package\Cargado de datos Viajero (Cliente)\OLE DB Destination 1.Inputs[OLE DB Destination Input]"
+              name="Lookup No Match Output"
+              startId="Package\Cargado de datos Viajero (Cliente)\Lookup.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\Cargado de datos Viajero (Cliente).Paths[OLE DB Source Output]"
+              endId="Package\Cargado de datos Viajero (Cliente)\Lookup.Inputs[Lookup Input]"
+              name="OLE DB Source Output"
+              startId="Package\Cargado de datos Viajero (Cliente)\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\GetDatabaseRowVersion"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{865995b0-7358-49ad-8f83-884a7af4a53b}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="GetDatabaseRowVersion"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{9B3CD3D5-40FC-4A8D-82F8-55D03F34059F}"
+          SQLTask:SqlStatementSource="EXECUTE [dbo].[GetDatabaseRowVersion] "
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="DBTS"
+            SQLTask:DtsVariableName="User::dbts" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\GetLastPackageRowVersion dw"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{5EA4AB99-4537-468A-B4B8-BDF27636718D}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="GetLastPackageRowVersion dw"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{AD557E9B-8F27-49FC-8637-42C7BE64C60A}"
+          SQLTask:SqlStatementSource="execute  [dbo].[GetLastPackageRowVersion] @tableName='viajero'"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="LastRowVersion"
+            SQLTask:DtsVariableName="User::LastRowVersion" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Limpiar tabla staging Viajero"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{F5BF37E8-A5D7-4E83-A0EE-85534E11C443}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Limpiar tabla staging Viajero"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{AD557E9B-8F27-49FC-8637-42C7BE64C60A}"
+          SQLTask:SqlStatementSource="truncate table  staging.Viajero" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\sincronizar"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{1837611C-A38C-471B-8142-8B69E5E22E18}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="sincronizar"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{AD557E9B-8F27-49FC-8637-42C7BE64C60A}"
+          SQLTask:SqlStatementSource="EXECUTE [dbo].[MergeDim_Viajero]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{FA1A6C72-2E87-4516-A276-C7945D6B413D}"
+      DTS:From="Package\GetLastPackageRowVersion dw"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 1"
+      DTS:To="Package\Limpiar tabla staging Viajero" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{7C25A90F-0895-4FAF-A49F-B2490F104310}"
+      DTS:From="Package\Limpiar tabla staging Viajero"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 2"
+      DTS:To="Package\Cargado de datos Viajero (Cliente)" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{9F913520-E4BA-457F-A466-F06F53617A15}"
+      DTS:From="Package\Cargado de datos Viajero (Cliente)"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 3"
+      DTS:To="Package\sincronizar" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{73759642-621E-456E-8AC6-572363C1D27A}"
+      DTS:From="Package\sincronizar"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 4"
+      DTS:To="Package\actualizar configuracion" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{46858600-EC22-4C6E-BC71-3A1F91129FD8}"
+      DTS:From="Package\GetDatabaseRowVersion"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 5"
+      DTS:To="Package\GetLastPackageRowVersion dw" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="224.8,41.6"
+          Id="Package\GetLastPackageRowVersion dw"
+          TopLeft="117.142857392224,110.117646962301" />
+        <NodeLayout
+          Size="212.8,41.6"
+          Id="Package\Limpiar tabla staging Viajero"
+          TopLeft="120.000000255448,185.823529248883" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 1]"
+          TopLeft="227.971428823836,151.717646962301">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,34.105882286582"
+              Start="0,0"
+              End="0,26.605882286582">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.605882286582" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="240.8,41.6"
+          Id="Package\Cargado de datos Viajero (Cliente)"
+          TopLeft="139.285714582217,263.823529180513" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 2]"
+          TopLeft="226.400000255448,227.423529248883">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="33.2857143267685,36.3999999316299"
+              Start="0,0"
+              End="33.2857143267685,28.8999999316299">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.199999965815" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.199999965815"
+                    Point2="0,18.199999965815"
+                    Point3="4,18.199999965815" />
+                  <mssgle:LineSegment
+                    End="29.2857143267685,18.199999965815" />
+                  <mssgle:CubicBezierSegment
+                    Point1="29.2857143267685,18.199999965815"
+                    Point2="33.2857143267685,18.199999965815"
+                    Point3="33.2857143267685,22.199999965815" />
+                  <mssgle:LineSegment
+                    End="33.2857143267685,28.8999999316299" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="128.8,41.6"
+          Id="Package\sincronizar"
+          TopLeft="155.000000329954,337.99999970373" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 3]"
+          TopLeft="259.685714582217,305.423529180513">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-40.2857142522626,32.5764705232169"
+              Start="0,0"
+              End="-40.2857142522626,25.0764705232169">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,12.2882352616085" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,12.2882352616085"
+                    Point2="0,16.2882352616085"
+                    Point3="-4,16.2882352616085" />
+                  <mssgle:LineSegment
+                    End="-36.2857142522626,16.2882352616085" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-36.2857142522626,16.2882352616085"
+                    Point2="-40.2857142522626,16.2882352616085"
+                    Point3="-40.2857142522626,20.2882352616085" />
+                  <mssgle:LineSegment
+                    End="-40.2857142522626,25.0764705232169" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="169.6,41.6"
+          Id="Package\actualizar configuracion"
+          TopLeft="375.714286514083,345.647058520556" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 4]"
+          TopLeft="283.800000329954,362.623529112143">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="91.9142861841286,0"
+              Start="0,0"
+              End="84.4142861841286,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="84.4142861841286,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="259.2,44.8"
+          Id="Package\GetDatabaseRowVersion"
+          TopLeft="149.285714603504,21.4117646871141" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 5]"
+          TopLeft="278.885714603504,66.2117646871141">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-49.3428572112807,43.905882275187"
+              Start="0,0"
+              End="-49.3428572112807,36.405882275187">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.9529411375935" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.9529411375935"
+                    Point2="0,21.9529411375935"
+                    Point3="-4,21.9529411375935" />
+                  <mssgle:LineSegment
+                    End="-45.3428572112807,21.9529411375935" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-45.3428572112807,21.9529411375935"
+                    Point2="-49.3428572112807,21.9529411375935"
+                    Point3="-49.3428572112807,25.9529411375935" />
+                  <mssgle:LineSegment
+                    End="-49.3428572112807,36.405882275187" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Cargado de datos Viajero (Cliente)">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="149.6,41.6"
+          Id="Package\Cargado de datos Viajero (Cliente)\OLE DB Source"
+          TopLeft="151.428571750923,41.2941176108629" />
+        <NodeLayout
+          Size="112.8,41.6"
+          Id="Package\Cargado de datos Viajero (Cliente)\Lookup"
+          TopLeft="174.285714656723,136.882352821194" />
+        <EdgeLayout
+          Id="Package\Cargado de datos Viajero (Cliente).Paths[OLE DB Source Output]"
+          TopLeft="228.457143203823,82.8941176108629">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,53.9882352103309"
+              Start="0,0"
+              End="0,46.4882352103309">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,46.4882352103309" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="170.4,41.6"
+          Id="Package\Cargado de datos Viajero (Cliente)\OLE DB Destination"
+          TopLeft="72.1428572964304,223.294117451333" />
+        <NodeLayout
+          Size="179.2,41.6"
+          Id="Package\Cargado de datos Viajero (Cliente)\OLE DB Destination 1"
+          TopLeft="275.714286301209,224.823529214698" />
+        <EdgeLayout
+          Id="Package\Cargado de datos Viajero (Cliente).Paths[Lookup Match Output]"
+          TopLeft="230.685714656723,178.482352821194">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-73.3428573602925,44.8117646301391"
+              Start="0,0"
+              End="-73.3428573602925,37.3117646301391">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.4058823150695" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18.4058823150695"
+                    Point2="0,22.4058823150695"
+                    Point3="-4,22.4058823150695" />
+                  <mssgle:LineSegment
+                    End="-69.3428573602925,22.4058823150695" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-69.3428573602925,22.4058823150695"
+                    Point2="-73.3428573602925,22.4058823150695"
+                    Point3="-73.3428573602925,26.4058823150695" />
+                  <mssgle:LineSegment
+                    End="-73.3428573602925,37.3117646301391" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-84.8628153988962,27.4058823150695,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Cargado de datos Viajero (Cliente).Paths[Lookup No Match Output]"
+          TopLeft="248.152381323389,178.482352821194">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="117.161904977819,46.3411763935044"
+              Start="0,0"
+              End="117.161904977819,38.8411763935044">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.9253475621025" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.9253475621025"
+                    Point2="0,18.9253475621025"
+                    Point3="4,18.9253475621025" />
+                  <mssgle:LineSegment
+                    End="113.161904977819,18.9253475621025" />
+                  <mssgle:CubicBezierSegment
+                    Point1="113.161904977819,18.9253475621025"
+                    Point2="117.161904977819,18.9253475621025"
+                    Point3="117.161904977819,22.9253475621025" />
+                  <mssgle:LineSegment
+                    End="117.161904977819,38.8411763935044" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="2.7745657701597,23.9253475621025,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Cargado de datos Viajero (Cliente)\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Cargado de datos Viajero (Cliente)\Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dim].[Dim_Viajero]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Cargado de datos Viajero (Cliente)\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Cargado de datos Viajero (Cliente)\OLE DB Destination 1">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -210,3 +210,56 @@ SELECT [id_viajero]
 	  WHERE [rowversion] > CONVERT(ROWVERSION,@startRow) 
 	  AND [rowversion] <= CONVERT(ROWVERSION,@endRow)
 END
+GO
+
+CREATE  PROCEDURE [dbo].[GetFechasChangesByRowVersion]
+(
+   @startRow BIGINT 
+   ,@endRow  BIGINT 
+)
+AS
+BEGIN
+
+SELECT 
+distinct
+    CAST(CONVERT(VARCHAR, fecha_billete, 112) AS INT) AS id_fecha
+    ,fecha_billete as fecha,  
+    DAY(fecha_billete) AS dia,  
+    MONTH(fecha_billete) AS mes,
+    YEAR(fecha_billete) AS anio, 
+    DATEPART(WEEKDAY, fecha_billete) AS dia_semana 
+FROM ventas.Billete
+WHERE [rowversion] > CONVERT(ROWVERSION,@startRow)  AND [rowversion] <= CONVERT(ROWVERSION,@endRow)
+END
+
+GO
+
+CREATE  PROCEDURE [dbo].[GetVentasChangesByRowVersion]
+(
+   @startRow BIGINT 
+   ,@endRow  BIGINT 
+)
+AS
+BEGIN
+
+SELECT [id_billete]
+	  ,SE.id_ruta
+	  ,CAST(CONVERT(VARCHAR, fecha_billete, 112) AS INT) AS id_fecha
+	  ,SE.id_autobus
+	  ,SE.id_conductor
+	  ,LUI.id_lugar
+	  ,LUI.id_actividad
+	  ,BI.id_viajero
+	  ,SE.id_servicio AS codigo_servicio
+	  ,SE.fecha_servicio
+	  ,SE.hora_salida
+	  ,SE.hora_llegada
+	  ,1 AS cantidad_viajeros
+	  ,bi.importe_billete as ingresos_totales
+      ,SE.[rowversion]
+  FROM [ventas].[Billete] bi 
+       join [produccion].[Servicio_Diario] SE ON BI.id_servicio=SE.id_servicio
+	   join [produccion].[Lugar_Interes] LUI ON SE.id_servicio=LUI.id_servicio
+	  WHERE BI.rowversion > CONVERT(ROWVERSION,@startRow) 
+	  AND BI.rowversion <= CONVERT(ROWVERSION,@endRow)
+END

@@ -1,0 +1,965 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="3/18/2025 6:04:50 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="LAPTOP-RGHC6UT6"
+  DTS:CreatorName="LAPTOP-RGHC6UT6\rbaltazar"
+  DTS:DTSID="{DD790942-4D62-4CF9-9C60-4AA4C2DA22A6}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.0"
+  DTS:LocaleID="2058"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="14"
+  DTS:VersionGUID="{69078155-29F1-45C2-9214-1C60822E65E9}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[destino.turybusdw]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{B4130417-604D-4FB3-9B37-2A8AB3E9C415}"
+      DTS:ObjectName="destino.turybusdw">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=turybusdw;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{B4130417-604D-4FB3-9B37-2A8AB3E9C415}localhost.turybusdw;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[destino.turybusdw 1]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{AD557E9B-8F27-49FC-8637-42C7BE64C60A}"
+      DTS:ObjectName="destino.turybusdw 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=turybusdw;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{AD557E9B-8F27-49FC-8637-42C7BE64C60A}localhost.turybusdw;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[origen.turybus]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{44A771A9-7F39-4E1D-A199-D208D865BF0D}"
+      DTS:ObjectName="origen.turybus">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=turybus;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{44A771A9-7F39-4E1D-A199-D208D865BF0D}localhost.turybus;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[origen.turybus 1]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{9B3CD3D5-40FC-4A8D-82F8-55D03F34059F}"
+      DTS:ObjectName="origen.turybus 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=turybus;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{9B3CD3D5-40FC-4A8D-82F8-55D03F34059F}localhost.turybus;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A8D39C4D-1169-40B4-ADF6-E875165E6013}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="dbts">
+      <DTS:VariableValue
+        DTS:DataType="20">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{64434C9A-5E12-4B48-A440-5C3C3A4511BA}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="LastRowVersion">
+      <DTS:VariableValue
+        DTS:DataType="20">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\actualizar configuracion"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{3be23762-0f00-4bff-94f1-851fc8e92ddf}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="actualizar configuracion"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{B4130417-604D-4FB3-9B37-2A8AB3E9C415}"
+          SQLTask:SqlStatementSource="&#xA;EXECUTE  [dbo].[UpdateLastPackageRowVersion] @tableName='fecha',@lastRowVersion=?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::dbts"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Cargado de Fechas"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{83e87d3b-cd75-4e5b-8b5a-e27c52be1e2e}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Cargado de Fechas"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Cargado de Fechas\Lookup"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [dim].[Dim_Fecha]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from [dim].[Dim_Fecha]) [refTable]
+where [refTable].[id_fecha] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="sk_fecha" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="id_fecha" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="fecha" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="dia" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="mes" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="anio" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="dia_semana" dataType="DT_STR" length="20" precision="0" scale="0" codePage="1252"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Cargado de Fechas\OLE DB Source.Outputs[OLE DB Source Output].Columns[id_fecha]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Cargado de Fechas\Lookup.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[destino.turybusdw]"
+                  connectionManagerRefId="Package.ConnectionManagers[destino.turybusdw]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Cargado de Fechas\Lookup.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Cargado de Fechas\Lookup.Inputs[Lookup Input].Columns[id_fecha]"
+                      cachedDataType="i4"
+                      cachedName="id_fecha"
+                      lineageId="Package\Cargado de Fechas\OLE DB Source.Outputs[OLE DB Source Output].Columns[id_fecha]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">id_fecha</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Cargado de Fechas\Lookup.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Cargado de Fechas\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargado de Fechas\Lookup.Outputs[Lookup Match Output].Columns[sk_fecha]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Cargado de Fechas\Lookup.Outputs[Lookup Match Output].Columns[sk_fecha]"
+                      name="sk_fecha"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">sk_fecha</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Cargado de Fechas\Lookup.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Cargado de Fechas\Lookup.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Cargado de Fechas\Lookup.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Cargado de Fechas\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargado de Fechas\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cargado de Fechas\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cargado de Fechas\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cargado de Fechas\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Cargado de Fechas\OLE DB Destination 1"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination 1"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dim].[Dim_Fecha]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Cargado de Fechas\OLE DB Destination 1.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[destino.turybusdw]"
+                  connectionManagerRefId="Package.ConnectionManagers[destino.turybusdw]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Cargado de Fechas\OLE DB Destination 1.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Cargado de Fechas\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[id_fecha]"
+                      cachedDataType="i4"
+                      cachedName="id_fecha"
+                      externalMetadataColumnId="Package\Cargado de Fechas\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[id_fecha]"
+                      lineageId="Package\Cargado de Fechas\OLE DB Source.Outputs[OLE DB Source Output].Columns[id_fecha]" />
+                    <inputColumn
+                      refId="Package\Cargado de Fechas\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[fecha]"
+                      cachedDataType="dbDate"
+                      cachedName="fecha"
+                      externalMetadataColumnId="Package\Cargado de Fechas\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[fecha]"
+                      lineageId="Package\Cargado de Fechas\OLE DB Source.Outputs[OLE DB Source Output].Columns[fecha]" />
+                    <inputColumn
+                      refId="Package\Cargado de Fechas\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[dia]"
+                      cachedDataType="i4"
+                      cachedName="dia"
+                      externalMetadataColumnId="Package\Cargado de Fechas\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[dia]"
+                      lineageId="Package\Cargado de Fechas\OLE DB Source.Outputs[OLE DB Source Output].Columns[dia]" />
+                    <inputColumn
+                      refId="Package\Cargado de Fechas\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[anio]"
+                      cachedDataType="i4"
+                      cachedName="anio"
+                      externalMetadataColumnId="Package\Cargado de Fechas\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[anio]"
+                      lineageId="Package\Cargado de Fechas\OLE DB Source.Outputs[OLE DB Source Output].Columns[anio]" />
+                    <inputColumn
+                      refId="Package\Cargado de Fechas\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[dia_semana]"
+                      cachedDataType="i4"
+                      cachedName="dia_semana"
+                      externalMetadataColumnId="Package\Cargado de Fechas\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[dia_semana]"
+                      lineageId="Package\Cargado de Fechas\OLE DB Source.Outputs[OLE DB Source Output].Columns[dia_semana]" />
+                    <inputColumn
+                      refId="Package\Cargado de Fechas\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[mes]"
+                      cachedDataType="i4"
+                      cachedName="mes"
+                      externalMetadataColumnId="Package\Cargado de Fechas\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[mes]"
+                      lineageId="Package\Cargado de Fechas\OLE DB Source.Outputs[OLE DB Source Output].Columns[mes]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Cargado de Fechas\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[sk_fecha]"
+                      dataType="i4"
+                      name="sk_fecha" />
+                    <externalMetadataColumn
+                      refId="Package\Cargado de Fechas\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[id_fecha]"
+                      dataType="i4"
+                      name="id_fecha" />
+                    <externalMetadataColumn
+                      refId="Package\Cargado de Fechas\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[fecha]"
+                      dataType="dbDate"
+                      name="fecha" />
+                    <externalMetadataColumn
+                      refId="Package\Cargado de Fechas\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[dia]"
+                      dataType="i4"
+                      name="dia" />
+                    <externalMetadataColumn
+                      refId="Package\Cargado de Fechas\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[mes]"
+                      dataType="i4"
+                      name="mes" />
+                    <externalMetadataColumn
+                      refId="Package\Cargado de Fechas\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[anio]"
+                      dataType="i4"
+                      name="anio" />
+                    <externalMetadataColumn
+                      refId="Package\Cargado de Fechas\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[dia_semana]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="dia_semana" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Cargado de Fechas\OLE DB Destination 1.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Cargado de Fechas\OLE DB Destination 1.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargado de Fechas\OLE DB Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cargado de Fechas\OLE DB Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cargado de Fechas\OLE DB Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cargado de Fechas\OLE DB Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Cargado de Fechas\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[ventas].[Viajero]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">EXECUTE [dbo].[GetFechasChangesByRowVersion]  @startRow=? , @endRow=?</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping">"@startRow:Input",{64434C9A-5E12-4B48-A440-5C3C3A4511BA};"@endRow:Input",{A8D39C4D-1169-40B4-ADF6-E875165E6013};</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Cargado de Fechas\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[origen.turybus]"
+                  connectionManagerRefId="Package.ConnectionManagers[origen.turybus]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Cargado de Fechas\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargado de Fechas\OLE DB Source.Outputs[OLE DB Source Output].Columns[id_fecha]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargado de Fechas\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[id_fecha]"
+                      lineageId="Package\Cargado de Fechas\OLE DB Source.Outputs[OLE DB Source Output].Columns[id_fecha]"
+                      name="id_fecha"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargado de Fechas\OLE DB Source.Outputs[OLE DB Source Output].Columns[fecha]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargado de Fechas\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fecha]"
+                      lineageId="Package\Cargado de Fechas\OLE DB Source.Outputs[OLE DB Source Output].Columns[fecha]"
+                      name="fecha"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargado de Fechas\OLE DB Source.Outputs[OLE DB Source Output].Columns[dia]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargado de Fechas\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[dia]"
+                      lineageId="Package\Cargado de Fechas\OLE DB Source.Outputs[OLE DB Source Output].Columns[dia]"
+                      name="dia"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargado de Fechas\OLE DB Source.Outputs[OLE DB Source Output].Columns[anio]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargado de Fechas\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[anio]"
+                      lineageId="Package\Cargado de Fechas\OLE DB Source.Outputs[OLE DB Source Output].Columns[anio]"
+                      name="anio"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargado de Fechas\OLE DB Source.Outputs[OLE DB Source Output].Columns[dia_semana]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargado de Fechas\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[dia_semana]"
+                      lineageId="Package\Cargado de Fechas\OLE DB Source.Outputs[OLE DB Source Output].Columns[dia_semana]"
+                      name="dia_semana"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargado de Fechas\OLE DB Source.Outputs[OLE DB Source Output].Columns[mes]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargado de Fechas\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[mes]"
+                      lineageId="Package\Cargado de Fechas\OLE DB Source.Outputs[OLE DB Source Output].Columns[mes]"
+                      name="mes"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Cargado de Fechas\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[id_fecha]"
+                      dataType="i4"
+                      name="id_fecha" />
+                    <externalMetadataColumn
+                      refId="Package\Cargado de Fechas\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fecha]"
+                      dataType="dbDate"
+                      name="fecha" />
+                    <externalMetadataColumn
+                      refId="Package\Cargado de Fechas\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[dia]"
+                      dataType="i4"
+                      name="dia" />
+                    <externalMetadataColumn
+                      refId="Package\Cargado de Fechas\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[anio]"
+                      dataType="i4"
+                      name="anio" />
+                    <externalMetadataColumn
+                      refId="Package\Cargado de Fechas\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[dia_semana]"
+                      dataType="i4"
+                      name="dia_semana" />
+                    <externalMetadataColumn
+                      refId="Package\Cargado de Fechas\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[mes]"
+                      dataType="i4"
+                      name="mes" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Cargado de Fechas\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargado de Fechas\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[id_fecha]"
+                      dataType="i4"
+                      lineageId="Package\Cargado de Fechas\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[id_fecha]"
+                      name="id_fecha" />
+                    <outputColumn
+                      refId="Package\Cargado de Fechas\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fecha]"
+                      dataType="dbDate"
+                      lineageId="Package\Cargado de Fechas\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fecha]"
+                      name="fecha" />
+                    <outputColumn
+                      refId="Package\Cargado de Fechas\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[dia]"
+                      dataType="i4"
+                      lineageId="Package\Cargado de Fechas\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[dia]"
+                      name="dia" />
+                    <outputColumn
+                      refId="Package\Cargado de Fechas\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[mes]"
+                      dataType="i4"
+                      lineageId="Package\Cargado de Fechas\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[mes]"
+                      name="mes" />
+                    <outputColumn
+                      refId="Package\Cargado de Fechas\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[anio]"
+                      dataType="i4"
+                      lineageId="Package\Cargado de Fechas\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[anio]"
+                      name="anio" />
+                    <outputColumn
+                      refId="Package\Cargado de Fechas\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[dia_semana]"
+                      dataType="i4"
+                      lineageId="Package\Cargado de Fechas\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[dia_semana]"
+                      name="dia_semana" />
+                    <outputColumn
+                      refId="Package\Cargado de Fechas\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cargado de Fechas\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cargado de Fechas\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cargado de Fechas\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Cargado de Fechas.Paths[Lookup No Match Output]"
+              endId="Package\Cargado de Fechas\OLE DB Destination 1.Inputs[OLE DB Destination Input]"
+              name="Lookup No Match Output"
+              startId="Package\Cargado de Fechas\Lookup.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\Cargado de Fechas.Paths[OLE DB Source Output]"
+              endId="Package\Cargado de Fechas\Lookup.Inputs[Lookup Input]"
+              name="OLE DB Source Output"
+              startId="Package\Cargado de Fechas\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\GetDatabaseRowVersion"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{41ce5550-058a-4349-b767-d774891fca89}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="GetDatabaseRowVersion"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{44A771A9-7F39-4E1D-A199-D208D865BF0D}"
+          SQLTask:SqlStatementSource="EXECUTE [dbo].[GetDatabaseRowVersion] "
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="DBTS"
+            SQLTask:DtsVariableName="User::dbts" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\GetLastPackageRowVersion dw"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{aa884732-b6ed-439d-b38e-1fc63031ddaf}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="GetLastPackageRowVersion dw"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{B4130417-604D-4FB3-9B37-2A8AB3E9C415}"
+          SQLTask:SqlStatementSource="execute  [dbo].[GetLastPackageRowVersion] @tableName='fecha'"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="LastRowVersion"
+            SQLTask:DtsVariableName="User::LastRowVersion" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción]"
+      DTS:CreationName=""
+      DTS:DTSID="{8EA904A7-53C4-4AEC-A7F7-05A72EBB1FE6}"
+      DTS:From="Package\GetDatabaseRowVersion"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción"
+      DTS:To="Package\GetLastPackageRowVersion dw" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{847D6BB6-4C75-46DA-BA3E-E227E77FE4F9}"
+      DTS:From="Package\GetLastPackageRowVersion dw"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 1"
+      DTS:To="Package\Cargado de Fechas" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{D3A971AA-3B71-4013-BCBD-47B090500FA8}"
+      DTS:From="Package\Cargado de Fechas"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 2"
+      DTS:To="Package\actualizar configuracion" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="259.2,44.8"
+          Id="Package\GetDatabaseRowVersion"
+          TopLeft="93.5714286428932,24.0588235609156" />
+        <NodeLayout
+          Size="224.8,41.6"
+          Id="Package\GetLastPackageRowVersion dw"
+          TopLeft="102.142857232568,112.80000004558" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción]"
+          TopLeft="223.171428642893,68.8588235609156">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-8.62857141032532,43.9411764846644"
+              Start="0,0"
+              End="-8.62857141032532,36.4411764846644">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.9705882423322" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.9705882423322"
+                    Point2="0,21.9705882423322"
+                    Point3="-4,21.9705882423322" />
+                  <mssgle:LineSegment
+                    End="-4.62857141032532,21.9705882423322" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-4.62857141032532,21.9705882423322"
+                    Point2="-8.62857141032532,21.9705882423322"
+                    Point3="-8.62857141032532,25.9705882423322" />
+                  <mssgle:LineSegment
+                    End="-8.62857141032532,36.4411764846644" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="168,41.6"
+          Id="Package\Cargado de Fechas"
+          TopLeft="118.571428696112,204.458823583706" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 1]"
+          TopLeft="214.542857232568,154.40000004558">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-11.9714285364563,50.0588235381255"
+              Start="0,0"
+              End="-11.9714285364563,42.5588235381255">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.0294117690627" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21.0294117690627"
+                    Point2="0,25.0294117690627"
+                    Point3="-4,25.0294117690627" />
+                  <mssgle:LineSegment
+                    End="-7.97142853645633,25.0294117690627" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-7.97142853645633,25.0294117690627"
+                    Point2="-11.9714285364563,25.0294117690627"
+                    Point3="-11.9714285364563,29.0294117690627" />
+                  <mssgle:LineSegment
+                    End="-11.9714285364563,42.5588235381255" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="189.6,41.6"
+          Id="Package\actualizar configuracion"
+          TopLeft="353.571429196365,205.882353083279" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 2]"
+          TopLeft="286.571428696112,225.970588333492">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="67.0000005002535,0"
+              Start="0,0"
+              End="59.5000005002535,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="59.5000005002535,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Cargado de Fechas">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="179.2,41.6"
+          Id="Package\Cargado de Fechas\OLE DB Destination 1"
+          TopLeft="140.714286013829,258.470588008734" />
+        <NodeLayout
+          Size="112.8,41.6"
+          Id="Package\Cargado de Fechas\Lookup"
+          TopLeft="174.285714656723,136.882352821194" />
+        <NodeLayout
+          Size="149.6,41.6"
+          Id="Package\Cargado de Fechas\OLE DB Source"
+          TopLeft="151.428571750923,41.2941176108629" />
+        <EdgeLayout
+          Id="Package\Cargado de Fechas.Paths[OLE DB Source Output]"
+          TopLeft="228.457143203823,82.8941176108629">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,53.9882352103309"
+              Start="0,0"
+              End="0,46.4882352103309">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,46.4882352103309" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Cargado de Fechas.Paths[Lookup No Match Output]"
+          TopLeft="230.500000335276,178.482352821194">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,79.9882351875404"
+              Start="0,0"
+              End="0,72.4882351875404">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,72.4882351875404" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-55.80638671875,30.4394300937702,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Cargado de Fechas\OLE DB Destination 1">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Cargado de Fechas\Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dim].[Dim_Fecha]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Cargado de Fechas\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

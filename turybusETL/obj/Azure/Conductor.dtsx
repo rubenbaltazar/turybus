@@ -1,0 +1,1386 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="3/9/2025 10:07:27 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="LAPTOP-RGHC6UT6"
+  DTS:CreatorName="LAPTOP-RGHC6UT6\rbaltazar"
+  DTS:DTSID="{CCCCCEC2-704D-4BBF-8A0B-D25E2703C7C3}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.0"
+  DTS:LocaleID="2058"
+  DTS:ObjectName="Ruta"
+  DTS:PackageType="5"
+  DTS:VersionBuild="38"
+  DTS:VersionGUID="{E5C6A164-6DDF-43B3-B20F-0CBF2763A92E}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[destino.turybusdw]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{B213DA49-6BF5-4513-B4C4-DFB6084BA8DF}"
+      DTS:ObjectName="destino.turybusdw">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=turybusdw;Provider=MSOLEDBSQL;Integrated Security=SSPI;Application Name=SSIS-Package-{B213DA49-6BF5-4513-B4C4-DFB6084BA8DF}localhost.turybusdw;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[origen.turybus]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{5F0B6C9C-EFC7-4FB3-96E9-88A00FCA5BD8}"
+      DTS:ObjectName="origen.turybus">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=turybus;Provider=MSOLEDBSQL;Integrated Security=SSPI;Application Name=SSIS-Package-{5F0B6C9C-EFC7-4FB3-96E9-88A00FCA5BD8}localhost.turybus;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D134D501-589E-44E8-919B-556563EE5CD7}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="dbts">
+      <DTS:VariableValue
+        DTS:DataType="20">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{30FE9EBB-1D64-4CEC-8594-2AE752C34538}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="LastRowVersion">
+      <DTS:VariableValue
+        DTS:DataType="20">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\cargar datos"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{358C8DFA-17A5-42C2-B867-DB6949872DB0}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="cargar datos"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\cargar datos\Lookup"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [dim].[Dim_Conductor]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from [dim].[Dim_Conductor]) [refTable]
+where [refTable].[id_conductor] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">2</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="sk_conductor" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="id_conductor" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="dni_conductor" dataType="DT_STR" length="20" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="nombres_conductor" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="apellidos_conductor" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="telefono_conductor" dataType="DT_STR" length="20" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="direccion_conductor" dataType="DT_TEXT" length="0" precision="0" scale="0" codePage="1252"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[id_conductor]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\cargar datos\Lookup.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[destino.turybusdw]"
+                  connectionManagerRefId="Package.ConnectionManagers[destino.turybusdw]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\cargar datos\Lookup.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\cargar datos\Lookup.Inputs[Lookup Input].Columns[id_conductor]"
+                      cachedDataType="i4"
+                      cachedName="id_conductor"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[id_conductor]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">id_conductor</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\cargar datos\Lookup.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\cargar datos\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\cargar datos\Lookup.Outputs[Lookup Match Output].Columns[sk_conductor]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\cargar datos\Lookup.Outputs[Lookup Match Output].Columns[sk_conductor]"
+                      name="sk_conductor"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">sk_conductor</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\cargar datos\Lookup.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\cargar datos\Lookup.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\cargar datos\Lookup.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\cargar datos\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\cargar datos\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\cargar datos\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\cargar datos\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\cargar datos\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\cargar datos\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[staging].[Conductor]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\cargar datos\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[destino.turybusdw]"
+                  connectionManagerRefId="Package.ConnectionManagers[destino.turybusdw]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\cargar datos\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\cargar datos\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[dni_conductor]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="dni_conductor"
+                      externalMetadataColumnId="Package\cargar datos\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[dni_conductor]"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[dni_conductor]" />
+                    <inputColumn
+                      refId="Package\cargar datos\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[nombres_conductor]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="nombres_conductor"
+                      externalMetadataColumnId="Package\cargar datos\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[nombres_conductor]"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[nombres_conductor]" />
+                    <inputColumn
+                      refId="Package\cargar datos\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[apellidos_conductor]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="apellidos_conductor"
+                      externalMetadataColumnId="Package\cargar datos\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[apellidos_conductor]"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[apellidos_conductor]" />
+                    <inputColumn
+                      refId="Package\cargar datos\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[telefono_conductor]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="telefono_conductor"
+                      externalMetadataColumnId="Package\cargar datos\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[telefono_conductor]"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[telefono_conductor]" />
+                    <inputColumn
+                      refId="Package\cargar datos\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[direccion_conductor]"
+                      cachedCodepage="1252"
+                      cachedDataType="text"
+                      cachedName="direccion_conductor"
+                      externalMetadataColumnId="Package\cargar datos\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[direccion_conductor]"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[direccion_conductor]" />
+                    <inputColumn
+                      refId="Package\cargar datos\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[sk_conductor]"
+                      cachedDataType="i4"
+                      cachedName="sk_conductor"
+                      externalMetadataColumnId="Package\cargar datos\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[sk_conductor]"
+                      lineageId="Package\cargar datos\Lookup.Outputs[Lookup Match Output].Columns[sk_conductor]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\cargar datos\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[sk_conductor]"
+                      dataType="i4"
+                      name="sk_conductor" />
+                    <externalMetadataColumn
+                      refId="Package\cargar datos\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[dni_conductor]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="dni_conductor" />
+                    <externalMetadataColumn
+                      refId="Package\cargar datos\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[nombres_conductor]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="nombres_conductor" />
+                    <externalMetadataColumn
+                      refId="Package\cargar datos\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[apellidos_conductor]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="apellidos_conductor" />
+                    <externalMetadataColumn
+                      refId="Package\cargar datos\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[telefono_conductor]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="telefono_conductor" />
+                    <externalMetadataColumn
+                      refId="Package\cargar datos\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[direccion_conductor]"
+                      codePage="1252"
+                      dataType="text"
+                      name="direccion_conductor" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\cargar datos\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\cargar datos\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\cargar datos\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\cargar datos\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\cargar datos\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\cargar datos\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\cargar datos\OLE DB Destination 1"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination 1"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dim].[Dim_Conductor]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\cargar datos\OLE DB Destination 1.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[destino.turybusdw]"
+                  connectionManagerRefId="Package.ConnectionManagers[destino.turybusdw]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\cargar datos\OLE DB Destination 1.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\cargar datos\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[id_conductor]"
+                      cachedDataType="i4"
+                      cachedName="id_conductor"
+                      externalMetadataColumnId="Package\cargar datos\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[id_conductor]"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[id_conductor]" />
+                    <inputColumn
+                      refId="Package\cargar datos\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[dni_conductor]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="dni_conductor"
+                      externalMetadataColumnId="Package\cargar datos\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[dni_conductor]"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[dni_conductor]" />
+                    <inputColumn
+                      refId="Package\cargar datos\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[nombres_conductor]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="nombres_conductor"
+                      externalMetadataColumnId="Package\cargar datos\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[nombres_conductor]"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[nombres_conductor]" />
+                    <inputColumn
+                      refId="Package\cargar datos\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[apellidos_conductor]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="apellidos_conductor"
+                      externalMetadataColumnId="Package\cargar datos\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[apellidos_conductor]"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[apellidos_conductor]" />
+                    <inputColumn
+                      refId="Package\cargar datos\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[telefono_conductor]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="telefono_conductor"
+                      externalMetadataColumnId="Package\cargar datos\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[telefono_conductor]"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[telefono_conductor]" />
+                    <inputColumn
+                      refId="Package\cargar datos\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[direccion_conductor]"
+                      cachedCodepage="1252"
+                      cachedDataType="text"
+                      cachedName="direccion_conductor"
+                      externalMetadataColumnId="Package\cargar datos\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[direccion_conductor]"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[direccion_conductor]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\cargar datos\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[sk_conductor]"
+                      dataType="i4"
+                      name="sk_conductor" />
+                    <externalMetadataColumn
+                      refId="Package\cargar datos\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[id_conductor]"
+                      dataType="i4"
+                      name="id_conductor" />
+                    <externalMetadataColumn
+                      refId="Package\cargar datos\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[dni_conductor]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="dni_conductor" />
+                    <externalMetadataColumn
+                      refId="Package\cargar datos\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[nombres_conductor]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="nombres_conductor" />
+                    <externalMetadataColumn
+                      refId="Package\cargar datos\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[apellidos_conductor]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="apellidos_conductor" />
+                    <externalMetadataColumn
+                      refId="Package\cargar datos\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[telefono_conductor]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="telefono_conductor" />
+                    <externalMetadataColumn
+                      refId="Package\cargar datos\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[direccion_conductor]"
+                      codePage="1252"
+                      dataType="text"
+                      name="direccion_conductor" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\cargar datos\OLE DB Destination 1.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\cargar datos\OLE DB Destination 1.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\cargar datos\OLE DB Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\cargar datos\OLE DB Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\cargar datos\OLE DB Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\cargar datos\OLE DB Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\cargar datos\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">EXECUTE [dbo].[GetConductorChangesByRowVersion]  @startRow=? , @endRow=?</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping">"@startRow:Input",{30FE9EBB-1D64-4CEC-8594-2AE752C34538};"@endRow:Input",{D134D501-589E-44E8-919B-556563EE5CD7};</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\cargar datos\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[origen.turybus]"
+                  connectionManagerRefId="Package.ConnectionManagers[origen.turybus]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[rowversion]"
+                      dataType="bytes"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[rowversion]"
+                      length="8"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[rowversion]"
+                      name="rowversion"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[id_conductor]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[id_conductor]"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[id_conductor]"
+                      name="id_conductor"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[dni_conductor]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[dni_conductor]"
+                      length="20"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[dni_conductor]"
+                      name="dni_conductor"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[nombres_conductor]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[nombres_conductor]"
+                      length="50"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[nombres_conductor]"
+                      name="nombres_conductor"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[apellidos_conductor]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[apellidos_conductor]"
+                      length="50"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[apellidos_conductor]"
+                      name="apellidos_conductor"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[telefono_conductor]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[telefono_conductor]"
+                      length="20"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[telefono_conductor]"
+                      name="telefono_conductor"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[direccion_conductor]"
+                      codePage="1252"
+                      dataType="text"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[direccion_conductor]"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].Columns[direccion_conductor]"
+                      name="direccion_conductor"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[rowversion]"
+                      dataType="bytes"
+                      length="8"
+                      name="rowversion" />
+                    <externalMetadataColumn
+                      refId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[id_conductor]"
+                      dataType="i4"
+                      name="id_conductor" />
+                    <externalMetadataColumn
+                      refId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[dni_conductor]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="dni_conductor" />
+                    <externalMetadataColumn
+                      refId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[nombres_conductor]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="nombres_conductor" />
+                    <externalMetadataColumn
+                      refId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[apellidos_conductor]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="apellidos_conductor" />
+                    <externalMetadataColumn
+                      refId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[telefono_conductor]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="telefono_conductor" />
+                    <externalMetadataColumn
+                      refId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[direccion_conductor]"
+                      codePage="1252"
+                      dataType="text"
+                      name="direccion_conductor" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[id_conductor]"
+                      dataType="i4"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[id_conductor]"
+                      name="id_conductor" />
+                    <outputColumn
+                      refId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[dni_conductor]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[dni_conductor]"
+                      name="dni_conductor" />
+                    <outputColumn
+                      refId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[nombres_conductor]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[nombres_conductor]"
+                      name="nombres_conductor" />
+                    <outputColumn
+                      refId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[apellidos_conductor]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[apellidos_conductor]"
+                      name="apellidos_conductor" />
+                    <outputColumn
+                      refId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[telefono_conductor]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[telefono_conductor]"
+                      name="telefono_conductor" />
+                    <outputColumn
+                      refId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[direccion_conductor]"
+                      codePage="1252"
+                      dataType="text"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[direccion_conductor]"
+                      name="direccion_conductor" />
+                    <outputColumn
+                      refId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[rowversion]"
+                      dataType="bytes"
+                      length="8"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[rowversion]"
+                      name="rowversion" />
+                    <outputColumn
+                      refId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\cargar datos.Paths[Lookup Match Output]"
+              endId="Package\cargar datos\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Lookup Match Output"
+              startId="Package\cargar datos\Lookup.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\cargar datos.Paths[Lookup No Match Output]"
+              endId="Package\cargar datos\OLE DB Destination 1.Inputs[OLE DB Destination Input]"
+              name="Lookup No Match Output"
+              startId="Package\cargar datos\Lookup.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\cargar datos.Paths[OLE DB Source Output]"
+              endId="Package\cargar datos\Lookup.Inputs[Lookup Input]"
+              name="OLE DB Source Output"
+              startId="Package\cargar datos\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get LastRowVersion Conductor"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{8144479C-D6F3-4512-8ACE-CF5621C1DF76}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get LastRowVersion Conductor"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{B213DA49-6BF5-4513-B4C4-DFB6084BA8DF}"
+          SQLTask:SqlStatementSource="execute  [dbo].[GetLastPackageRowVersion] @tableName='Conductor'"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="LastRowVersion"
+            SQLTask:DtsVariableName="User::LastRowVersion" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\GetDatabaseRowVersion"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{D110BF5F-AABD-4AFF-8E6A-D475020FB213}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="GetDatabaseRowVersion"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{5F0B6C9C-EFC7-4FB3-96E9-88A00FCA5BD8}"
+          SQLTask:SqlStatementSource="EXECUTE [dbo].[GetDatabaseRowVersion] "
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="DBTS"
+            SQLTask:DtsVariableName="User::dbts" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Limpiar staging Ruta"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{EDD4AC15-DABD-4A8B-B71A-E81E853DCCEA}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Limpiar staging Ruta"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{B213DA49-6BF5-4513-B4C4-DFB6084BA8DF}"
+          SQLTask:SqlStatementSource="truncate table  staging.Conductor" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\syn staging"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{0D5AEEEA-87BD-44B7-8587-E7C13EE8417B}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="syn staging"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{B213DA49-6BF5-4513-B4C4-DFB6084BA8DF}"
+          SQLTask:SqlStatementSource="EXECUTE [dbo].[MergeDim_Conductor]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\update config"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{1BC8133C-B05D-4DC5-A0E2-5B41FF4E345A}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="update config"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{B213DA49-6BF5-4513-B4C4-DFB6084BA8DF}"
+          SQLTask:SqlStatementSource="&#xA;EXECUTE  [dbo].[UpdateLastPackageRowVersion] @tableName='Conductor',@lastRowVersion=?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::dbts"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción]"
+      DTS:CreationName=""
+      DTS:DTSID="{FE36E081-001D-41AC-B2BF-FB13C3ACB92B}"
+      DTS:From="Package\GetDatabaseRowVersion"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción"
+      DTS:To="Package\Get LastRowVersion Conductor" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{7A88DCDE-BCF0-4648-99B0-E0FDA6F8E645}"
+      DTS:From="Package\Get LastRowVersion Conductor"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 1"
+      DTS:To="Package\Limpiar staging Ruta" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{CC3A5766-C7C8-4A35-B05D-F6C3448826DB}"
+      DTS:From="Package\Limpiar staging Ruta"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 2"
+      DTS:To="Package\cargar datos" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{EA842E0F-56F8-45C3-89B3-F720EFF474BE}"
+      DTS:From="Package\cargar datos"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 3"
+      DTS:To="Package\syn staging" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{B079DC6A-653E-4106-A486-871A3BF2F34F}"
+      DTS:From="Package\syn staging"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 4"
+      DTS:To="Package\update config" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="136.8,41.6"
+          Id="Package\cargar datos"
+          TopLeft="140.71428601383,305.117646791376" />
+        <NodeLayout
+          Size="214.4,41.6"
+          Id="Package\Get LastRowVersion Conductor"
+          TopLeft="93.5714287706175,141.47058811129" />
+        <NodeLayout
+          Size="259.2,44.8"
+          Id="Package\GetDatabaseRowVersion"
+          TopLeft="82.857143033524,49.705882309372" />
+        <NodeLayout
+          Size="192,41.6"
+          Id="Package\Limpiar staging Ruta"
+          TopLeft="105.000000223517,221.764705687968" />
+        <NodeLayout
+          Size="169.6,41.6"
+          Id="Package\syn staging"
+          TopLeft="384.285715103758,259.247058657296" />
+        <NodeLayout
+          Size="142.4,41.6"
+          Id="Package\update config"
+          TopLeft="382.142857956339,364.011764447819" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción]"
+          TopLeft="212.457143033524,94.505882309372">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-11.6857142629065,46.9647058019176"
+              Start="0,0"
+              End="-11.6857142629065,39.4647058019176">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.4823529009588" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,19.4823529009588"
+                    Point2="0,23.4823529009588"
+                    Point3="-4,23.4823529009588" />
+                  <mssgle:LineSegment
+                    End="-7.68571426290649,23.4823529009588" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-7.68571426290649,23.4823529009588"
+                    Point2="-11.6857142629065,23.4823529009588"
+                    Point3="-11.6857142629065,27.4823529009588" />
+                  <mssgle:LineSegment
+                    End="-11.6857142629065,39.4647058019176" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 1]"
+          TopLeft="200.771428770617,183.07058811129">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-18.1714285471,38.6941175766779"
+              Start="0,0"
+              End="-18.1714285471,31.1941175766779">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.3470587883389" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15.3470587883389"
+                    Point2="0,19.3470587883389"
+                    Point3="-4,19.3470587883389" />
+                  <mssgle:LineSegment
+                    End="-14.1714285471,19.3470587883389" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-14.1714285471,19.3470587883389"
+                    Point2="-18.1714285471,19.3470587883389"
+                    Point3="-18.1714285471,23.3470587883389" />
+                  <mssgle:LineSegment
+                    End="-18.1714285471,31.1941175766779" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 2]"
+          TopLeft="201.000000223517,263.364705687968">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="8.11428579031207,41.7529411034085"
+              Start="0,0"
+              End="8.11428579031207,34.2529411034085">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.8764705517043" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.8764705517043"
+                    Point2="0,20.8764705517043"
+                    Point3="4,20.8764705517043" />
+                  <mssgle:LineSegment
+                    End="4.11428579031207,20.8764705517043" />
+                  <mssgle:CubicBezierSegment
+                    Point1="4.11428579031207,20.8764705517043"
+                    Point2="8.11428579031207,20.8764705517043"
+                    Point3="8.11428579031207,24.8764705517043" />
+                  <mssgle:LineSegment
+                    End="8.11428579031207,34.2529411034085" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 3]"
+          TopLeft="277.51428601383,325.917646791376">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="106.771429089928,-45.8705881340798"
+              Start="0,0"
+              End="99.2714290899282,-45.8705881340798">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="49.3857145449641,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="49.3857145449641,0"
+                    Point2="53.3857145449641,0"
+                    Point3="53.3857145449641,-4" />
+                  <mssgle:LineSegment
+                    End="53.3857145449641,-41.8705881340798" />
+                  <mssgle:CubicBezierSegment
+                    Point1="53.3857145449641,-41.8705881340798"
+                    Point2="53.3857145449641,-45.8705881340798"
+                    Point3="57.3857145449641,-45.8705881340798" />
+                  <mssgle:LineSegment
+                    End="99.2714290899282,-45.8705881340798" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 4]"
+          TopLeft="469.085715103758,300.847058657296">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-15.7428571474186,63.1647057905227"
+              Start="0,0"
+              End="-15.7428571474186,55.6647057905227">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.5823528952614" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,27.5823528952614"
+                    Point2="0,31.5823528952614"
+                    Point3="-4,31.5823528952614" />
+                  <mssgle:LineSegment
+                    End="-11.7428571474186,31.5823528952614" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-11.7428571474186,31.5823528952614"
+                    Point2="-15.7428571474186,31.5823528952614"
+                    Point3="-15.7428571474186,35.5823528952614" />
+                  <mssgle:LineSegment
+                    End="-15.7428571474186,55.6647057905227" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\cargar datos">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="170.4,41.6"
+          Id="Package\cargar datos\OLE DB Destination"
+          TopLeft="80.5952383141096,193.647058657296" />
+        <NodeLayout
+          Size="149.6,41.6"
+          Id="Package\cargar datos\OLE DB Source"
+          TopLeft="225.714286194772,44.3529411375935" />
+        <NodeLayout
+          Size="112.8,41.6"
+          Id="Package\cargar datos\Lookup"
+          TopLeft="237.142857647672,135.352941057829" />
+        <NodeLayout
+          Size="179.2,41.6"
+          Id="Package\cargar datos\OLE DB Destination 1"
+          TopLeft="391.42857226182,178.894117519703" />
+        <EdgeLayout
+          Id="Package\cargar datos.Paths[OLE DB Source Output]"
+          TopLeft="297.028571921222,85.9529411375935">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,49.399999920235"
+              Start="0,0"
+              End="0,41.899999920235">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.899999920235" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\cargar datos.Paths[Lookup No Match Output]"
+          TopLeft="349.942857647672,156.152941057829">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="41.485714614148,43.5411764618744"
+              Start="0,0"
+              End="33.985714614148,43.5411764618744">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="16.742857307074,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="16.742857307074,0"
+                    Point2="20.742857307074,0"
+                    Point3="20.742857307074,4" />
+                  <mssgle:LineSegment
+                    End="20.742857307074,39.5411764618744" />
+                  <mssgle:CubicBezierSegment
+                    Point1="20.742857307074,39.5411764618744"
+                    Point2="20.742857307074,43.5411764618744"
+                    Point3="24.742857307074,43.5411764618744" />
+                  <mssgle:LineSegment
+                    End="33.985714614148,43.5411764618744" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-35.063529411676,-17.609375,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\cargar datos.Paths[Lookup Match Output]"
+          TopLeft="237.142857647672,156.152941057829">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-71.3476193335624,37.494117599467"
+              Start="0,0"
+              End="-71.3476193335624,29.994117599467">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-67.3476193335624,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-67.3476193335624,0"
+                    Point2="-71.3476193335624,0"
+                    Point3="-71.3476193335624,4" />
+                  <mssgle:LineSegment
+                    End="-71.3476193335624,29.994117599467" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-119.539006052312,-17.609375,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\cargar datos\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\cargar datos\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\cargar datos\Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dim].[Dim_Conductor]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\cargar datos\OLE DB Destination 1">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

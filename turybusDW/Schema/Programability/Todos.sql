@@ -92,3 +92,39 @@ BEGIN
 	INNER JOIN [staging].[Ruta] sc ON (dc.[sk_ruta] = sc.[sk_ruta])
 END
 GO
+
+CREATE PROCEDURE [dbo].[MergeDim_Viajero]
+AS
+BEGIN
+
+	UPDATE dc
+	SET 
+
+	    [dni_viajero]    = sc.[dni_viajero]
+	   ,[nombres_viajero] = sc.[nombres_viajero]
+	   ,[apellidos_viajero] = sc.[apellidos_viajero]
+	   ,[telefono_viajero] = sc.[telefono_viajero]
+	   ,[direccion_viajero] = sc.[direccion_viajero]
+	   
+	FROM [dim].[Dim_Viajero]         dc
+	INNER JOIN [staging].[Viajero] sc ON (dc.[sk_viajero] = sc.[sk_viajero])
+END
+GO
+
+
+CREATE PROCEDURE [dbo].[MergeHecho_Venta]
+AS
+BEGIN
+
+	UPDATE DC
+	SET 
+		 [cantidad_viajeros]    = sc.[cantidad_viajeros]
+	   ,[ingresos_totales] = sc.[ingresos_totales]
+	   ,[fecha_servicio] = sc.[fecha_servicio]
+	   ,[hora_salida] = sc.hora_salida
+	   ,hora_llegada = sc.hora_llegada
+
+	FROM [hechos].[Hecho_Venta] dc
+	 JOIN [staging].[Ventas] sc ON dc.id_billete=sc.sk_billete
+END
+

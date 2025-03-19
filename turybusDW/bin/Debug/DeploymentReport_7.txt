@@ -1,0 +1,31 @@
+﻿** Aspectos destacados
+     Tablas que se volverán a crear con los datos migrados
+       [hechos].[Hechos_Viajes]
+     Índices clúster que se van a quitar
+       Ninguno
+     Índices clúster que se van a crear
+       Ninguno
+     Posibles incidencias de datos
+       Ninguno
+
+** Acciones del usuario
+     Quitar
+       restricción sin nombre en [hechos].[Hechos_Viajes] (Clave externa)
+       restricción sin nombre en [hechos].[Hechos_Viajes] (Clave externa)
+       restricción sin nombre en [hechos].[Hechos_Viajes] (Clave externa)
+       restricción sin nombre en [hechos].[Hechos_Viajes] (Clave externa)
+       restricción sin nombre en [hechos].[Hechos_Viajes] (Clave externa)
+       restricción sin nombre en [hechos].[Hechos_Viajes] (Clave externa)
+     Volver a crear la tabla
+       [hechos].[Hechos_Viajes] (Tabla)
+     Crear
+       Clave externa: restricción sin nombre en [hechos].[Hechos_Viajes] (Clave externa)
+
+** Acciones de compatibilidad
+     Crear
+       Clave externa: restricción sin nombre en [hechos].[Hechos_Viajes] (Clave externa)
+       Clave externa: restricción sin nombre en [hechos].[Hechos_Viajes] (Clave externa)
+       Clave externa: restricción sin nombre en [hechos].[Hechos_Viajes] (Clave externa)
+       Clave externa: restricción sin nombre en [hechos].[Hechos_Viajes] (Clave externa)
+       Clave externa: restricción sin nombre en [hechos].[Hechos_Viajes] (Clave externa)
+       Clave externa: restricción sin nombre en [hechos].[Hechos_Viajes] (Clave externa)
