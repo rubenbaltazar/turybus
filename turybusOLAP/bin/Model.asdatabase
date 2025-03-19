@@ -1,7 +1,8 @@
 {
-  "name": "SemanticModel",
+  "name": "turybusOLAP",
   "compatibilityLevel": 1200,
   "model": {
+    "name": "Modelo",
     "culture": "es-MX",
     "dataSources": [
       {
@@ -697,6 +698,5 @@
         "value": "400"
       }
     ]
-  },
-  "id": "SemanticModel"
+  }
 }

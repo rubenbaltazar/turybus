@@ -1,0 +1,8 @@
+D:\proyectosgit\turybusOLAP\bin\Model.asdatabase
+D:\proyectosgit\turybusOLAP\bin\Model.deploymenttargets
+D:\proyectosgit\turybusOLAP\bin\Model.deploymentoptions
+D:\proyectosgit\turybusOLAP\obj\Development\turybusOLAP.smproj.AssemblyReference.cache
+D:\proyectosgit\turybusOLAP\obj\Development\turybusOLAP.smproj.CoreCompileInputs.cache
+D:\proyectosgit\turybusOLAP\obj\Development\Model.asdatabase
+D:\proyectosgit\turybusOLAP\obj\Development\Model.deploymentoptions
+D:\proyectosgit\turybusOLAP\obj\Development\Model.deploymenttargets

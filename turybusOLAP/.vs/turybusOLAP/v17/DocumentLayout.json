@@ -1,7 +1,12 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\proyectosgit\\turybusOLAP\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{8CE414BB-95B2-4C99-9E03-51BA72086E22}|turybusOLAP.smproj|D:\\proyectosgit\\turybusOLAP\\Model.bim||{9EE154FA-5389-414A-9FA1-1D9F0221267D}",
+      "RelativeMoniker": "D:0:0:{8CE414BB-95B2-4C99-9E03-51BA72086E22}|turybusOLAP.smproj|solutionrelative:Model.bim||{9EE154FA-5389-414A-9FA1-1D9F0221267D}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,11 +14,23 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+              "Name": "ST:0:0:{f4e46f1e-cf83-40aa-b568-a627394bc994}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Model.bim",
+              "DocumentMoniker": "D:\\proyectosgit\\turybusOLAP\\Model.bim",
+              "RelativeDocumentMoniker": "Model.bim",
+              "ToolTip": "D:\\proyectosgit\\turybusOLAP\\Model.bim",
+              "RelativeToolTip": "Model.bim",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-03-19T14:25:10.648Z",
+              "EditorCaption": ""
             }
           ]
         }
